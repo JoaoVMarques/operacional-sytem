@@ -1,5 +1,10 @@
+import Terminal from './apps/Terminal/Terminal';
+import Window from './components/os/Window';
+
 function App() {
-  return <h1>Portifolio</h1>;
+  return <Window>
+    <Terminal />
+  </Window>;
 }
 
 export default App;
