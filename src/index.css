@@ -2,5 +2,8 @@
 
 @theme {
   --font-sans: "Ubuntu", sans-serif;
-  --font-mono: "Ubuntu Mono", monospace;
+  --font-mono: "Fira Code", monospace;
+  
+  --color-aubergine: #300A24;
+  --color-ubuntu-orange: #E95420;
 }

@@ -1,4 +1,5 @@
 import WindowHeader from './WindowHeader';
+import { motion } from 'framer-motion';
 
 interface Props {
   children: React.ReactNode;
@@ -7,12 +8,16 @@ interface Props {
 
 function Window({ children, title }: Props) {
   return <>
-    <div className="shadow-2xl rounded-t-md text-white">
+    <motion.div
+      drag
+      dragMomentum={ false }
+      className="absolute top-20 left-20 shadow-2xl rounded-t-md text-white"
+    >
       < WindowHeader title={ title } onClose={ () => console.log('close!') } />
-    </div>
-    <div>
-      { children }
-    </div>
+      <div className="bg-stone-700 p-1">
+        { children }
+      </div>
+    </motion.div>
   </>;
 }
 

@@ -16,7 +16,7 @@ function WindowHeader({ title, onClose }: Props) {
   px-4
   py-1">
     <div className="w-4"></div>
-    <span>{ title }</span>
+    <span>{ title } ~ </span>
     <div className="flex space-x-2">
       <WindowButton onClick={ () => console.log('maximize') }
         icon= { <Square size={ 9 } strokeWidth={ 8 } /> }
