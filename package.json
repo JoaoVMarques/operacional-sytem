@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fontsource/ubuntu": "^5.2.8",
+    "@fontsource/ubuntu-mono": "^5.2.8",
     "@tailwindcss/vite": "^4.2.1",
     "axios": "^1.7.9",
     "formik": "^2.4.6",

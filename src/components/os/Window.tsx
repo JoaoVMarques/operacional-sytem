@@ -1,11 +1,15 @@
 interface Props {
-  children: React.ReactNode
+  children: React.ReactNode;
+  title: string
 }
 
-function Window({ children }: Props) {
+function Window({ children, title }: Props) {
   return <>
-    <div className="bg-blue-900">
-      { children }
+    <div className="bg-stone-700 rounded-t-md text-center text-white">
+      <span>{ title }</span>
+      <div className="text-start">
+        { children }
+      </div>
     </div>
   </>;
 }
