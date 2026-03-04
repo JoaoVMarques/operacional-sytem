@@ -1,5 +1,5 @@
 import Terminal from './apps/Terminal/Terminal';
-import Window from './components/os/Window';
+import Window from './components/os/Window/Window';
 
 function App() {
   return <div className="h-dvh w-screen bg-cover bg-center bg-gray-700">

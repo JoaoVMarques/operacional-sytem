@@ -1,3 +1,5 @@
+import WindowButton from './WindowButton';
+
 interface Props {
   title: string
   onClose: () => void
@@ -14,21 +16,10 @@ function WindowHeader({ title, onClose }: Props) {
   py-1">
     <div className="w-4"></div>
     <span>{ title }</span>
-    <button
-      onClick={ onClose }
-      className="w-4
-      h-4
-      rounded-full
-      bg-orange-500
-      hover:bg-red-400
-      text-transparent
-      hover:text-white
-      flex
-      items-center
-      justify-center
-      transition-colors">
-      <span className="text-[13px] font-bold">X</span>
-    </button>
+    <WindowButton onClick={ onClose }
+      buttonText="X"
+      hoverColorClasss="hover:bg-red-400"
+      colorClass="bg-orange-500" />
   </div>;
 }
 
