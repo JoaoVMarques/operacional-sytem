@@ -8,7 +8,7 @@ interface Props {
 function Window({ children, title }: Props) {
   return <>
     <div className="shadow-2xl rounded-t-md text-white">
-      < WindowHeader title={ title } />
+      < WindowHeader title={ title } onClose={ () => console.log('close!') } />
     </div>
     <div>
       { children }
