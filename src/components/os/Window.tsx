@@ -1,3 +1,5 @@
+import WindowHeader from './WindowHeader';
+
 interface Props {
   children: React.ReactNode;
   title: string
@@ -5,11 +7,11 @@ interface Props {
 
 function Window({ children, title }: Props) {
   return <>
-    <div className="bg-stone-700 rounded-t-md text-center text-white">
-      <span>{ title }</span>
-      <div className="text-start">
-        { children }
-      </div>
+    <div className="shadow-2xl rounded-t-md text-white">
+      < WindowHeader title={ title } />
+    </div>
+    <div>
+      { children }
     </div>
   </>;
 }
