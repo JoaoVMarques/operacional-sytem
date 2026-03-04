@@ -1,11 +1,15 @@
 interface Props {
   onClick: () => void
-  buttonText: string
+  icon: React.ReactNode
   colorClass: string
   hoverColorClasss: string
 }
 
-function WindowButton({ onClick, buttonText, colorClass, hoverColorClasss }: Props) {
+function WindowButton({ onClick,
+  icon,
+  colorClass,
+  hoverColorClasss }: Props) {
+
   return <button
     onClick={ onClick }
     className={ `w-4
@@ -20,7 +24,7 @@ function WindowButton({ onClick, buttonText, colorClass, hoverColorClasss }: Pro
       hover:text-white
       ${colorClass} 
       ${hoverColorClasss}` }>
-    <span className="text-[13px] font-bold">{ buttonText }</span>
+    { icon }
   </button>;
 }
 
