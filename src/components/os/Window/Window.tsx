@@ -6,9 +6,10 @@ interface Props {
   children: React.ReactNode
   title: string
   bounds: RefObject<HTMLDivElement>
+  onClose: () => void
 }
 
-function Window({ children, title, bounds }: Props) {
+function Window({ children, title, bounds, onClose }: Props) {
   const dragControls = useDragControls();
 
   return <>
@@ -25,7 +26,7 @@ function Window({ children, title, bounds }: Props) {
         onPointerDown={ (e) => dragControls.start(e) }
         className="cursor-grab active:cursor-grabbing"
       >
-        <WindowHeader title={ title } onClose={ () => console.log('close!') } />
+        <WindowHeader title={ title } onClose={ () => onClose() } />
       </div>
       <div className="bg-stone-700 p-1">
         { children }
