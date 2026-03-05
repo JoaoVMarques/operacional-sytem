@@ -50,7 +50,7 @@ function Terminal() {
   };
 
   return (
-    <div className="bg-black text-white p-4 font-mono w-200 h-125 overflow-x-auto overflow-clip"
+    <div className="bg-black text-white p-4 font-mono w-200 h-125 overflow-hidden overflow-y-auto"
       onClick={ () => isAnimationComplete && inputRef.current?.focus() }
     >
       <div className="flex flex-col w-full">
@@ -71,7 +71,7 @@ function Terminal() {
         )) }
       </div>
 
-      <span className="text-white whitespace-pre">
+      <span className="text-white [font-variant-ligatures:none] whitespace-pre-wrap break-all">
         <span className="text-green-400 font-bold">{ '$> ' }</span>
         { inputValue }
       </span>

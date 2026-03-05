@@ -7,7 +7,8 @@ const terminalCommands: Record<string, () => string> = {
 };
 
 const useCommand = (commandName: string ) => {
-  const command = terminalCommands[commandName];
+  const cleanCommand = commandName.trim().toLowerCase();
+  const command = terminalCommands[cleanCommand];
 
   if (command) {
     return command();
