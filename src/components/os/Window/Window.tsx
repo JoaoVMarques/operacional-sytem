@@ -17,7 +17,7 @@ function Window({ children, title, bounds }: Props) {
       dragMomentum={ false }
       dragControls={ dragControls }
       dragListener={ false }
-      className="absolute top-20 left-20 shadow-2xl rounded-t-md text-white"
+      className="absolute top-20 left-20 shadow-2xl text-white"
       dragConstraints={ bounds }
       dragElastic={ 0 }
     >

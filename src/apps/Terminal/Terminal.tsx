@@ -1,10 +1,15 @@
 import { useLanguageStore } from '../../store/useLanguageStore';
 import { motion } from 'framer-motion';
+import renderAnimatedText from './animateText';
 
-// text-green-500
+// text-green-500 text-blue-300 text-purple-500
 function Terminal() {
   const { t } = useLanguageStore();
-  const rawText = t('terminal.welcome');
+  const welcomeText = t('terminal.welcome');
+  const welcomeDescription = t('terminal.welcome_description');
+  const terminal_help = t('terminal.help_message');
+
+  const fulltext = welcomeText.concat(`\n${welcomeDescription} \n \n${terminal_help}`);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -16,47 +21,6 @@ function Terminal() {
     },
   };
 
-  const letterVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { duration: 0 },
-    },
-  };
-
-  const renderAnimatedText = (text: string) => {
-    // Got this regex via gemini
-    const parts = text.split(/\{\{(.*?)\|(.*?)\}\}/g);
-    let globalCharIndex = 0;
-
-    return parts.flatMap((part, index) => {
-      if (index % 3 === 0) {
-        return part.split('').map((char) => (
-          <motion.span key={ `char-${globalCharIndex++}` } variants={ letterVariants }>
-            { char }
-          </motion.span>
-        ));
-      }
-
-      if (index % 3 === 1) {return [];}
-
-      if (index % 3 === 2) {
-        const customClassName = parts[index - 1];
-        return part.split('').map((char) => (
-          <motion.span
-            key={ `char-${globalCharIndex++}` }
-            variants={ letterVariants }
-            className={ customClassName }
-          >
-            { char }
-          </motion.span>
-        ));
-      }
-
-      return [];
-    });
-  };
-
   return (
     <div className="bg-black text-white p-4 font-mono w-200 h-125">
       <motion.div
@@ -65,7 +29,7 @@ function Terminal() {
         animate="visible"
         className="flex flex-wrap whitespace-pre-wrap"
       >
-        { renderAnimatedText(rawText) }
+        { renderAnimatedText(fulltext) }
       </motion.div>
 
       <div className="w-full h-2"></div>

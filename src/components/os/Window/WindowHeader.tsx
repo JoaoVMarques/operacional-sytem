@@ -14,7 +14,8 @@ function WindowHeader({ title, onClose }: Props) {
   justify-between
   select-none
   px-4
-  py-1">
+  py-1
+  rounded-t-md">
     <div className="w-4"></div>
     <span>{ title }</span>
     <div className="flex space-x-2">
