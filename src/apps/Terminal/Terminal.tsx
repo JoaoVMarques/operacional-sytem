@@ -1,6 +1,7 @@
 import { useLanguageStore } from '../../store/useLanguageStore';
 import { motion } from 'framer-motion';
 
+// text-green-500
 function Terminal() {
   const { t } = useLanguageStore();
   const rawText = t('terminal.welcome');
