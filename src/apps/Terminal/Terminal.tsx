@@ -67,6 +67,20 @@ function Terminal() {
       >
         { renderAnimatedText(rawText) }
       </motion.div>
+
+      <div className="w-full h-2"></div>
+
+      <motion.span
+        animate={ { opacity: [1, 1, 0, 0] } }
+        transition={ {
+          repeat: Infinity,
+          duration: 0.8,
+          times: [0, 0.5, 0.5, 1],
+        } }
+        className="ml-1 font-bold"
+      >
+          _
+      </motion.span>
     </div>
   );
 }
