@@ -34,6 +34,7 @@ function Terminal() {
   const handleCommandSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const response = useCommand(inputValue);
+    setIsAnimationComplete(true);
 
     if (response.command) {
       if (response.command === 'clear') {

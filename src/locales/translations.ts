@@ -4,7 +4,7 @@ const en = {
     welcome_description: 'Hello, My name is {{text-blue-300|João Victor Marques}} and I am Fullstack Developer.',
     help_message: "type '{{text-purple-500|help}}' to see the list of available commands.",
     command: {
-      help: '{{text-amber-400 font-bold|Available commands:}} \n',
+      help: '{{text-amber-400 font-bold|Available commands:}} \n ',
       help_description: 'See list of available commands.',
       help_category: 'Utilities',
 
