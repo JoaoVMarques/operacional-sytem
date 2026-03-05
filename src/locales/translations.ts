@@ -4,7 +4,12 @@ const en = {
     welcome_description: 'Hello, My name is {{text-blue-300|João Victor Marques}} and I am Fullstack Developer.',
     help_message: "type '{{text-purple-500|help}}' to see the list of available commands.",
     command: {
-      help: '{{text-amber-400 font-bold|Available commands:}} \n ',
+      help: '{{text-amber-400 font-bold|Available commands:}} \n',
+      help_description: 'See list of available commands.',
+      help_category: 'Utilities',
+
+      clear_description: 'Clear the terminal.',
+      clear_category: 'Utilities',
     },
   },
 };
@@ -17,7 +22,12 @@ const pt: Dictionary = {
     welcome_description: 'Olá, Meu nome é {{text-blue-300|João Victor Marques}} e eu sou desenvolvedor full-stack.',
     help_message: "digite '{{text-purple-500|help}}' para ver a lista de comando validos.",
     command: {
-      help: '{{text-amber-400 text-bold|Comandos validos:}} \n ',
+      help: '{{text-amber-400 text-bold|Comandos válidos:}} \n ',
+      help_description: 'Veja a lista de comandos válidos.',
+      help_category: 'Utilitários',
+
+      clear_description: 'Limpa o terminal.',
+      clear_category: 'Utilitários.',
     },
   },
 };

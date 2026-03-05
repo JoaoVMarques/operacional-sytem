@@ -4,7 +4,7 @@ import renderAnimatedText from './animateText';
 import { useEffect, useRef, useState } from 'react';
 import useCommand from './Commands';
 
-// text-green-500 text-blue-300 text-purple-500 text-amber-400
+// text-green-500 text-blue-300 text-purple-500 text-amber-400 text-purple-400
 function Terminal() {
   const { t } = useLanguageStore();
   const [isFocus, setIsFocus] = useState(false);
@@ -12,6 +12,7 @@ function Terminal() {
   const [isAnimationComplete, setIsAnimationComplete] = useState(false);
 
   const inputRef = useRef<HTMLInputElement>(null);
+  const bottomRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (inputRef.current && isAnimationComplete) {
@@ -26,15 +27,27 @@ function Terminal() {
 
   const [commandHistory, setCommandHistory] = useState<string[]>([fullWelcomeText]);
 
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: 'auto' });
+  }, [commandHistory]);
+
   const handleCommandSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const response = useCommand(inputValue);
 
-    setCommandHistory((prev) => [
+    if (response.command) {
+      if (response.command === 'clear') {
+        setCommandHistory([response.message]);
+        setInputValue('');
+        return;
+      }
+    }
+
+    {setCommandHistory((prev) => [
       ...prev,
-      `{{text-green-400 font-bold|$> }}'${inputValue}`,
-      response,
-    ]);
+      `{{text-green-400 font-bold|$> }}${inputValue}`,
+      response.message,
+    ]);}
 
     setInputValue('');
   };
@@ -102,6 +115,7 @@ function Terminal() {
           ref={ inputRef }
         />
       </form>
+      <div ref={ bottomRef } />
     </div>
   );
 }
