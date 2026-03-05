@@ -2,8 +2,9 @@ import { useLanguageStore } from '../../store/useLanguageStore';
 import { motion } from 'framer-motion';
 import renderAnimatedText from './animateText';
 import { useEffect, useRef, useState } from 'react';
+import useCommand from './Commands';
 
-// text-green-500 text-blue-300 text-purple-500
+// text-green-500 text-blue-300 text-purple-500 text-amber-400
 function Terminal() {
   const { t } = useLanguageStore();
   const [isFocus, setIsFocus] = useState(false);
@@ -20,9 +21,23 @@ function Terminal() {
 
   const welcomeText = t('terminal.welcome');
   const welcomeDescription = t('terminal.welcome_description');
-  const terminal_help = t('terminal.help_message');
+  const terminalHelp = t('terminal.help_message');
+  const fullWelcomeText = `${welcomeText}\n${welcomeDescription}\n \n${terminalHelp}`;
 
-  const fulltext = welcomeText.concat(`\n${welcomeDescription} \n \n${terminal_help}`);
+  const [commandHistory, setCommandHistory] = useState<string[]>([fullWelcomeText]);
+
+  const handleCommandSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const response = useCommand(inputValue);
+
+    setCommandHistory((prev) => [
+      ...prev,
+      `{{text-green-400 font-bold|$> }}'${inputValue}`,
+      response,
+    ]);
+
+    setInputValue('');
+  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -35,20 +50,26 @@ function Terminal() {
   };
 
   return (
-    <div className="bg-black text-white p-4 font-mono w-200 h-125"
+    <div className="bg-black text-white p-4 font-mono w-200 h-125 overflow-x-auto overflow-clip"
       onClick={ () => isAnimationComplete && inputRef.current?.focus() }
     >
-      <motion.div
-        variants={ containerVariants }
-        initial="hidden"
-        animate="visible"
-        className="flex flex-wrap whitespace-pre-wrap"
-        onAnimationComplete={ () => setIsAnimationComplete(true) }
-      >
-        { renderAnimatedText(fulltext) }
-      </motion.div>
+      <div className="flex flex-col w-full">
+        { commandHistory.map((line, index) => (
 
-      <div className="w-full h-2"></div>
+          <motion.div
+            key={ `historyLine-${index}` }
+
+            variants={ containerVariants }
+            initial="hidden"
+            animate="visible"
+            className="flex flex-wrap whitespace-pre-wrap mb-2"
+            onAnimationComplete={ () => setIsAnimationComplete(true) }
+          >
+            { renderAnimatedText(line) }
+          </motion.div>
+
+        )) }
+      </div>
 
       <span className="text-white whitespace-pre">
         <span className="text-green-400 font-bold">{ '$> ' }</span>
@@ -67,7 +88,7 @@ function Terminal() {
           _
       </motion.span>
 
-      <form onSubmit={ (e) => {e.preventDefault(); console.log(inputValue);}  }>
+      <form onSubmit={ (e) => handleCommandSubmit(e)  }>
         <input
           type="text"
           onChange={ (e) => setInputValue(e.target.value) }
