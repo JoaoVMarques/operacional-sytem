@@ -76,7 +76,7 @@ function Terminal() {
             variants={ containerVariants }
             initial="hidden"
             animate="visible"
-            className="flex flex-wrap whitespace-pre-wrap mb-2"
+            className="flex flex-wrap whitespace-pre-wrap mb-2 px-1.5"
             onAnimationComplete={ () => setIsAnimationComplete(true) }
           >
             { renderAnimatedText(line) }

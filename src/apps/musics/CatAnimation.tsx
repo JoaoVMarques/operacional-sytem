@@ -65,8 +65,14 @@ function CatAnimation() {
   return (
     <motion.div
       initial={ { opacity: 0 } }
-      animate={ { opacity: [0, 0, 1] } }
-      transition={ { duration: 4 } }
+      animate={ {
+        opacity: [0, 1],
+        transition: { duration: 4, ease: 'easeOut' },
+      } }
+      exit={ {
+        opacity: 0,
+        transition: { duration: 2, ease: 'easeIn' },
+      } }
     >
       <pre className="text-xs font-bold leading-tight text-white select-none font-mono">
         { nyanCatFrames[currentFrame] }

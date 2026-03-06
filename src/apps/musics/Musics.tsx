@@ -2,6 +2,7 @@ import { Pause, Play } from 'lucide-react';
 import { useRef, useState } from 'react';
 import { useLanguageStore } from '../../store/useLanguageStore';
 import CatAnimation from './CatAnimation';
+import { AnimatePresence } from 'framer-motion';
 
 function Musics() {
   const iframeRef = useRef<HTMLIFrameElement>(null);
@@ -50,9 +51,9 @@ function Musics() {
       ) }
 
       <div className="flex items-center justify-center w-70 pb-4 h-32 overflow-hidden bg-gray-900 rounded-lg mb-2">
-        { isPlaying && (
-          <CatAnimation />
-        ) }
+        <AnimatePresence>
+          { isPlaying && <CatAnimation /> }
+        </AnimatePresence>
       </div>
 
       <div className="flex items-center gap-2 mt-4 mb-2.5 justify-center">
@@ -71,7 +72,7 @@ function Musics() {
           className="mt-1
           appearance-none
           [&::-webkit-slider-runnable-track]:rounded-full
-          [&::-webkit-slider-runnable-track]:bg-gray-900
+        [&::-webkit-slider-runnable-track]:bg-gray-900
           [&::-webkit-slider-thumb]:appearance-none
           [&::-webkit-slider-thumb]:h-3.75
           [&::-webkit-slider-thumb]:w-3.75
