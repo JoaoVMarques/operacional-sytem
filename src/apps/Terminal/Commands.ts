@@ -37,8 +37,7 @@ const generateContactsMessage = () => {
   let fullMessage = '';
 
   contactInfo.forEach((contactObject) => {
-    fullMessage += `{{text-purple-300|${contactObject.platformName}:}} {{text-purple-200|${contactObject.url}}} \n`;
-    console.log(fullMessage);
+    fullMessage += `{{text-purple-300|${contactObject.platformName}:}} {{${contactObject.url}|${contactObject.display ? contactObject.display : contactObject.url}|text-purple-200 hover:text-purple-100 hover:underline cursor-pointer}}\n`;
   });
 
   return fullMessage;

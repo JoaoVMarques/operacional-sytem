@@ -1,4 +1,10 @@
-export const contactInfo = [
+interface contactType {
+  platformName: string,
+  url: string,
+  display?: string,
+}
+
+export const contactInfo: contactType[] = [
   {
     platformName: 'GitHub',
     url: 'https://github.com/JoaoVMarques',
@@ -9,6 +15,7 @@ export const contactInfo = [
   },
   {
     platformName: 'Email',
-    url: 'j.v.marques.fernandes@gmail.com',
+    url: 'mailto:j.v.marques.fernandes@gmail.com',
+    display: 'j.v.marques.fernandes@gmail.com',
   },
 ];
