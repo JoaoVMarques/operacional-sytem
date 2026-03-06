@@ -17,7 +17,7 @@ function App() {
     className="h-dvh w-screen bg-cover bg-center bg-gray-700 overflow-hidden">
     <div className="p-4 flex flex-col gap-4 flex-wrap max-h-screen">
       <DesktopIcon icon={ SquareTerminal } label="Terminal" onClick={ () => openWindow('terminal') }  />
-      <DesktopIcon icon={ Music4 } label={ t('apps.radio_name') } onClick={ () => openWindow('musics') }  />
+      <DesktopIcon icon={ Music4 } label={ t('desktop_apps.radio_name') } onClick={ () => openWindow('musics') }  />
     </div>
     { windows.terminal && (
       <Window title="Terminal ~ JoaoVMarques@Portfolio" bounds={ desktopRef } onClose={ () => closeWindow('terminal') }>
@@ -26,7 +26,7 @@ function App() {
     ) }
     {
       windows.musics && (
-        <Window title={ t('apps.radio_name') } bounds={ desktopRef } onClose={ () => closeWindow('musics') }>
+        <Window title={ t('desktop_apps.radio_name') } bounds={ desktopRef } onClose={ () => closeWindow('musics') }>
           <Musics />
         </Window>
       )

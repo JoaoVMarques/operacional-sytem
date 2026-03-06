@@ -1,6 +1,10 @@
 const en = {
-  apps: {
+  desktop_apps: {
     radio_name: 'Musics',
+  },
+  musics: {
+    playing_song: 'Playing:',
+    paused_song: 'Press play',
   },
   terminal: {
     welcome: 'Welcome to my {{text-green-500|Portfolio}} !',
@@ -20,8 +24,12 @@ const en = {
 export type Dictionary = typeof en;
 
 const pt: Dictionary = {
-  apps: {
+  desktop_apps: {
     radio_name: 'Músicas',
+  },
+  musics: {
+    playing_song: 'Tocando:',
+    paused_song: 'Pressione o play',
   },
   terminal: {
     welcome: 'Bem-vindo ao meu {{text-orange-500|Portfólio}} !',
