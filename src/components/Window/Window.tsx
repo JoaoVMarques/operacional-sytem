@@ -21,6 +21,17 @@ function Window({ children, title, bounds, onClose }: Props) {
       className="absolute top-20 left-20 shadow-2xl text-white bg-stone-700 AND overflow-hidden"
       dragConstraints={ bounds }
       dragElastic={ 0 }
+      initial={ { opacity: 0, scale: 0.85 } }
+      animate={ {
+        opacity: 1,
+        scale: 1,
+        transition: { duration: 0.2, ease: 'easeOut' },
+      } }
+      exit={ {
+        opacity: 0,
+        scale: 0.85,
+        transition: { duration: 0.2, ease: 'easeIn' },
+      } }
     >
       <div
         onPointerDown={ (e) => dragControls.start(e) }

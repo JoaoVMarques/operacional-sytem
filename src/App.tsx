@@ -6,6 +6,7 @@ import DesktopIcon from './components/Desktop/DesktopIcon';
 import { Music4, SquareTerminal } from 'lucide-react';
 import { useLanguageStore } from './store/useLanguageStore';
 import Musics from './apps/musics/Musics';
+import { AnimatePresence } from 'framer-motion';
 
 function App() {
   const desktopRef = useRef(null);
@@ -19,18 +20,24 @@ function App() {
       <DesktopIcon icon={ SquareTerminal } label="Terminal" onClick={ () => openWindow('terminal') }  />
       <DesktopIcon icon={ Music4 } label={ t('desktop_apps.radio_name') } onClick={ () => openWindow('musics') }  />
     </div>
-    { windows.terminal && (
-      <Window title="Terminal ~ JoaoVMarques@Portfolio" bounds={ desktopRef } onClose={ () => closeWindow('terminal') }>
-        <Terminal />
-      </Window>
-    ) }
-    {
-      windows.musics && (
-        <Window title={ t('desktop_apps.radio_name') } bounds={ desktopRef } onClose={ () => closeWindow('musics') }>
-          <Musics />
+    <AnimatePresence>
+      { windows.terminal && (
+        <Window title="Terminal ~ JoaoVMarques@Portfolio"
+          bounds={ desktopRef }
+          onClose={ () => closeWindow('terminal') }>
+          <Terminal />
         </Window>
-      )
-    }
+      ) }
+    </AnimatePresence>
+    <AnimatePresence>
+      {
+        windows.musics && (
+          <Window title={ t('desktop_apps.radio_name') } bounds={ desktopRef } onClose={ () => closeWindow('musics') }>
+            <Musics />
+          </Window>
+        )
+      }
+    </AnimatePresence>
 
   </div>;
 }
