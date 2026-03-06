@@ -17,6 +17,9 @@ const en = {
 
       clear_description: 'Clear the terminal.',
       clear_category: 'Utilities',
+
+      contact_description: 'Show My Contact information.',
+      contact_category: 'information',
     },
   },
 };
@@ -41,7 +44,10 @@ const pt: Dictionary = {
       help_category: 'Utilitários',
 
       clear_description: 'Limpa o terminal.',
-      clear_category: 'Utilitários.',
+      clear_category: 'Utilitários',
+
+      contact_description: 'Show My Contact information.',
+      contact_category: 'informação',
     },
   },
 };

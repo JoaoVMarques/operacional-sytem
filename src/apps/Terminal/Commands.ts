@@ -1,3 +1,4 @@
+import { contactInfo } from '../../data/Contacts';
 import { useLanguageStore } from '../../store/useLanguageStore';
 
 type CommandResponse = {
@@ -32,7 +33,24 @@ const helpMessage = (terminalCommands: Record<string, (isALoop?: boolean) => Com
   return fullMessage;
 };
 
+const generateContactsMessage = () => {
+  let fullMessage = '';
+
+  contactInfo.forEach((contactObject) => {
+    fullMessage += `{{text-purple-300|${contactObject.platformName}:}} {{text-purple-200|${contactObject.url}}} \n`;
+    console.log(fullMessage);
+  });
+
+  return fullMessage;
+};
+
 const terminalCommands: Record<string, (isALoop?: boolean) => CommandResponse> = {
+  contact: () => { return {
+    message: generateContactsMessage(),
+    description: t('terminal.command.contact_description'),
+    category: t('terminal.command.contact_category'),
+  };},
+
   help: (isALoop?: boolean) => { return {
     message: isALoop ? '' : helpMessage(terminalCommands),
     description: t('terminal.command.help_description'),

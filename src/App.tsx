@@ -28,8 +28,6 @@ function App() {
           <Terminal />
         </Window>
       ) }
-    </AnimatePresence>
-    <AnimatePresence>
       {
         windows.musics && (
           <Window title={ t('desktop_apps.radio_name') } bounds={ desktopRef } onClose={ () => closeWindow('musics') }>
