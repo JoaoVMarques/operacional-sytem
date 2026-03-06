@@ -1,6 +1,7 @@
 import { Pause, Play } from 'lucide-react';
 import { useRef, useState } from 'react';
 import { useLanguageStore } from '../../store/useLanguageStore';
+import CatAnimation from './CatAnimation';
 
 function Musics() {
   const iframeRef = useRef<HTMLIFrameElement>(null);
@@ -28,7 +29,7 @@ function Musics() {
   };
 
   return (
-    <div className="bg-gray-800 p-3 flex items-center ">
+    <div className="bg-gray-800 p-2">
       { hasStarted && (
         <iframe
           ref={ iframeRef }
@@ -38,13 +39,22 @@ function Musics() {
           allow="autoplay"
         />
       ) }
-      <button
-        onClick={ togglePlay }
-        className="hover:bg-white/10 rounded-full p-2 cursor-pointer duration-300 transition">
-        { isPlaying ? <Pause /> : <Play /> }
-      </button>
-      <div className="flex items-center gap-2 mr-2">
-        <span className="text-sm font-bold text-gray-300">{ isPlaying ? `${t('musics.playing_song')} Lofi Girl Radio` : t('musics.paused_song') }</span>
+
+      <div className="flex items-center justify-center w-64 h-32 overflow-hidden bg-gray-900 rounded-lg mb-2">
+        { isPlaying && (
+          <CatAnimation />
+        ) }
+      </div>
+
+      <div className="flex p-0.5">
+        <button
+          onClick={ togglePlay }
+          className="hover:bg-white/10 rounded-full p-2 cursor-pointer duration-300 transition">
+          { isPlaying ? <Pause /> : <Play /> }
+        </button>
+        <div className="flex items-center gap-2 ml-5 ">
+          <span className="text-sm font-bold text-gray-300">{ isPlaying ? `${t('musics.playing_song')} Lofi Girl Radio` : t('musics.paused_song') }</span>
+        </div>
       </div>
     </div>
   );
