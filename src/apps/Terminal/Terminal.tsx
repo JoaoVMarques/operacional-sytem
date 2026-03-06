@@ -4,7 +4,7 @@ import renderAnimatedText from './animateText';
 import { useEffect, useRef, useState } from 'react';
 import useCommand from './Commands';
 
-// text-green-500 text-blue-300 text-purple-500 text-amber-400 text-purple-400 text-purple-300 text-purple-200
+// text-green-500 text-blue-300 text-purple-500 text-amber-400 text-purple-400 text-purple-300 text-purple-200 text-bold
 function Terminal() {
   const { t } = useLanguageStore();
   const [isFocus, setIsFocus] = useState(false);
@@ -46,7 +46,7 @@ function Terminal() {
 
     {setCommandHistory((prev) => [
       ...prev,
-      `{{text-green-400 font-bold|$> }}${inputValue}`,
+      `{{text-green-400 font-bold|$> }}${inputValue}\n `,
       response.message,
     ]);}
 
@@ -105,7 +105,7 @@ function Terminal() {
       <form onSubmit={ (e) => handleCommandSubmit(e)  }>
         <input
           type="text"
-          onChange={ (e) => setInputValue(e.target.value) }
+          onChange={ (e) => setInputValue(`${e.target.value}`) }
           value={ inputValue }
           onFocus={ () => { setIsFocus(true); } }
           onBlur={ () => setIsFocus(false) }

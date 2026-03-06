@@ -1,4 +1,5 @@
 import { contactInfo } from '../../data/Contacts';
+import { courseInfo } from '../../data/Courses';
 import { useLanguageStore } from '../../store/useLanguageStore';
 
 type CommandResponse = {
@@ -11,7 +12,7 @@ type CommandResponse = {
 const { t } = useLanguageStore.getState();
 
 const helpMessage = (terminalCommands: Record<string, (isALoop?: boolean) => CommandResponse>) => {
-  let fullMessage = t('terminal.command.help');
+  let fullMessage = t('terminal.command.help_title');
   const groupedCommands: Record<string, string[]> = {};
 
   Object.keys(terminalCommands).forEach((cmdName) => {
@@ -33,8 +34,8 @@ const helpMessage = (terminalCommands: Record<string, (isALoop?: boolean) => Com
   return fullMessage;
 };
 
-const generateContactsMessage = () => {
-  let fullMessage = '';
+const contactMessage = () => {
+  let fullMessage = t('terminal.command.contact_title');
 
   contactInfo.forEach((contactObject) => {
     fullMessage += `{{text-purple-300|${contactObject.platformName}:}} {{${contactObject.url}|${contactObject.display ? contactObject.display : contactObject.url}|text-purple-200 hover:text-purple-100 hover:underline cursor-pointer}}\n`;
@@ -43,12 +44,29 @@ const generateContactsMessage = () => {
   return fullMessage;
 };
 
+const coursesMessage = () => {
+  let fullMessage = t('terminal.command.courses_title');
+
+  courseInfo.forEach((courseObject) => {
+    const course_year = courseObject.is_ongoing ? '{{text-purple-400|(In Progress):}}' : `{{text-purple-300|(${courseObject.year}):}}`;
+    fullMessage += `${course_year} ${courseObject.course} - {{text-green-500|${courseObject.course_name}}} \n`;
+  });
+
+  return fullMessage;
+};
+
 const terminalCommands: Record<string, (isALoop?: boolean) => CommandResponse> = {
   contact: () => { return {
-    message: generateContactsMessage(),
+    message: contactMessage(),
     description: t('terminal.command.contact_description'),
-    category: t('terminal.command.contact_category'),
-  };},
+    category: t('terminal.command.contact_category') };
+  },
+
+  courses: () => { return {
+    message: coursesMessage(),
+    description: t('terminal.command.courses_description'),
+    category: t('terminal.command.courses_category') };
+  },
 
   help: (isALoop?: boolean) => { return {
     message: isALoop ? '' : helpMessage(terminalCommands),

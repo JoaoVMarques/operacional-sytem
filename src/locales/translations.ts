@@ -1,4 +1,9 @@
 const en = {
+  courses: {
+    trybe_name: 'Full Stack Web Development',
+    unifacvest_course: 'B.S. in Computer Science',
+    course_ongoing: 'In Progress',
+  },
   desktop_apps: {
     radio_name: 'Musics',
   },
@@ -11,15 +16,20 @@ const en = {
     welcome_description: 'Hello, My name is {{text-blue-300|João Victor Marques}} and I am Fullstack Developer.',
     help_message: "type '{{text-purple-500|help}}' to see the list of available commands.",
     command: {
-      help: '{{text-amber-400 font-bold|Available commands:}} \n ',
+      help_title: '{{text-amber-400 font-bold|Available commands:}} \n ',
       help_description: 'See list of available commands.',
       help_category: 'Utilities',
 
       clear_description: 'Clear the terminal.',
       clear_category: 'Utilities',
 
+      contact_title: '{{text-amber-400 font-bold|My Contacts:}}\n',
       contact_description: 'Show My Contact information.',
       contact_category: 'information',
+
+      courses_title: '{{text-amber-400 font-bold|Courses and Certifications:}}\n',
+      courses_description: 'List courses and certifications.',
+      courses_category: 'information',
     },
   },
 };
@@ -27,6 +37,11 @@ const en = {
 export type Dictionary = typeof en;
 
 const pt: Dictionary = {
+  courses: {
+    trybe_name: 'Desenvolvimento Web Full Stack',
+    unifacvest_course: 'Bacharelado em Ciência da computação',
+    course_ongoing: 'Cursando',
+  },
   desktop_apps: {
     radio_name: 'Músicas',
   },
@@ -39,15 +54,20 @@ const pt: Dictionary = {
     welcome_description: 'Olá, Meu nome é {{text-blue-300|João Victor Marques}} e eu sou desenvolvedor full-stack.',
     help_message: "digite '{{text-purple-500|help}}' para ver a lista de comando validos.",
     command: {
-      help: '{{text-amber-400 text-bold|Comandos válidos:}} \n ',
+      help_title: '{{text-amber-400 font-bold|Comandos válidos:}} \n ',
       help_description: 'Veja a lista de comandos válidos.',
       help_category: 'Utilitários',
 
       clear_description: 'Limpa o terminal.',
       clear_category: 'Utilitários',
 
+      contact_title: '{{text-amber-400 font-bold|Meus contatos:}}\n',
       contact_description: 'Show My Contact information.',
       contact_category: 'informação',
+
+      courses_title: '{{text-amber-400 font-bold|Cursos e Certificações:}}\n',
+      courses_description: 'Mostra meus cursos e certificações.',
+      courses_category: 'informação',
     },
   },
 };
