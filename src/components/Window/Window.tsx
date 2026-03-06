@@ -18,7 +18,7 @@ function Window({ children, title, bounds, onClose }: Props) {
       dragMomentum={ false }
       dragControls={ dragControls }
       dragListener={ false }
-      className="absolute top-20 left-20 shadow-2xl text-white"
+      className="absolute top-20 left-20 shadow-2xl text-white bg-stone-700 AND overflow-hidden"
       dragConstraints={ bounds }
       dragElastic={ 0 }
     >
@@ -28,7 +28,7 @@ function Window({ children, title, bounds, onClose }: Props) {
       >
         <WindowHeader title={ title } onClose={ () => onClose() } />
       </div>
-      <div className="bg-stone-700 p-1">
+      <div className="bg-stone-700 p-0.5">
         { children }
       </div>
     </motion.div>

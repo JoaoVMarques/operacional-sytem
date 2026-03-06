@@ -13,7 +13,7 @@ function WindowHeader({ title, onClose }: Props) {
   items-center
   justify-between
   select-none
-  px-4
+  px-3.5
   py-1
   rounded-t-md">
     <div className="w-4"></div>
