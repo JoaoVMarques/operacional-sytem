@@ -1,4 +1,7 @@
 const en = {
+  apps: {
+    radio_name: 'Musics',
+  },
   terminal: {
     welcome: 'Welcome to my {{text-green-500|Portfolio}} !',
     welcome_description: 'Hello, My name is {{text-blue-300|João Victor Marques}} and I am Fullstack Developer.',
@@ -17,6 +20,9 @@ const en = {
 export type Dictionary = typeof en;
 
 const pt: Dictionary = {
+  apps: {
+    radio_name: 'Músicas',
+  },
   terminal: {
     welcome: 'Bem-vindo ao meu {{text-orange-500|Portfólio}} !',
     welcome_description: 'Olá, Meu nome é {{text-blue-300|João Victor Marques}} e eu sou desenvolvedor full-stack.',

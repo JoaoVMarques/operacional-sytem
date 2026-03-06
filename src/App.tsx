@@ -1,25 +1,36 @@
 import { useRef } from 'react';
-import Terminal from './apps/Terminal/Terminal';
+import Terminal from './apps/terminal/Terminal';
 import Window from './components/Window/Window';
 import { useWindowStore } from './store/useWindow';
 import DesktopIcon from './components/Desktop/DesktopIcon';
-import { SquareTerminal } from 'lucide-react';
+import { Music4, SquareTerminal } from 'lucide-react';
+import { useLanguageStore } from './store/useLanguageStore';
+import Musics from './apps/musics/Musics';
 
 function App() {
   const desktopRef = useRef(null);
   const { windows, closeWindow, openWindow } = useWindowStore();
+  const { t } = useLanguageStore();
 
   return <div
     ref={ desktopRef }
     className="h-dvh w-screen bg-cover bg-center bg-gray-700 overflow-hidden">
     <div className="p-4 flex flex-col gap-4 flex-wrap max-h-screen">
       <DesktopIcon icon={ SquareTerminal } label="Terminal" onClick={ () => openWindow('terminal') }  />
+      <DesktopIcon icon={ Music4 } label={ t('apps.radio_name') } onClick={ () => openWindow('musics') }  />
     </div>
     { windows.terminal && (
       <Window title="Terminal ~ JoaoVMarques@Portfolio" bounds={ desktopRef } onClose={ () => closeWindow('terminal') }>
         <Terminal />
       </Window>
     ) }
+    {
+      windows.musics && (
+        <Window title={ t('apps.radio_name') } bounds={ desktopRef } onClose={ () => closeWindow('musics') }>
+          <Musics />
+        </Window>
+      )
+    }
   </div>;
 }
 
