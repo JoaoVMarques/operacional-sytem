@@ -4,7 +4,7 @@ import renderAnimatedText from './animateText';
 import { useEffect, useRef, useState } from 'react';
 import useCommand from './Commands';
 
-// text-green-500 text-blue-300 text-purple-500 text-amber-400 text-purple-400 text-purple-300 text-purple-200 text-bold
+// text-green-500 text-blue-300 text-purple-500 text-amber-400 text-purple-400 text-purple-300 text-purple-200 text-bold text-blue-300
 function Terminal() {
   const { t } = useLanguageStore();
   const [isFocus, setIsFocus] = useState(false);
@@ -64,7 +64,7 @@ function Terminal() {
   };
 
   return (
-    <div className="bg-black text-white p-4 font-mono w-200 h-125 overflow-hidden overflow-y-auto"
+    <div className="bg-black text-white p-4 font-mono h-full overflow-hidden overflow-y-auto"
       onClick={ () => isAnimationComplete && inputRef.current?.focus() }
     >
       <div className="flex flex-col w-full">

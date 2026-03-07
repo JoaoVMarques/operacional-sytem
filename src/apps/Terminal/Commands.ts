@@ -49,7 +49,7 @@ const coursesMessage = () => {
 
   courseInfo.forEach((courseObject) => {
     const course_year = courseObject.is_ongoing ? '{{text-purple-400|(In Progress):}}' : `{{text-purple-300|(${courseObject.year}):}}`;
-    fullMessage += `${course_year} ${courseObject.course} - {{text-green-500|${courseObject.course_name}}} \n`;
+    fullMessage += `${course_year} ${courseObject.course} - {{text-blue-300|${courseObject.course_name}}} \n`;
   });
 
   return fullMessage;

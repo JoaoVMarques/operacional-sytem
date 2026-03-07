@@ -6,10 +6,12 @@ interface Props {
   children: React.ReactNode
   title: string
   bounds: RefObject<HTMLDivElement>
+  width?: number
+  height?: number
   onClose: () => void
 }
 
-function Window({ children, title, bounds, onClose }: Props) {
+function Window({ children, title, bounds, onClose, width, height }: Props) {
   const dragControls = useDragControls();
 
   return <>
@@ -18,7 +20,7 @@ function Window({ children, title, bounds, onClose }: Props) {
       dragMomentum={ false }
       dragControls={ dragControls }
       dragListener={ false }
-      className="absolute top-20 left-20 shadow-2xl text-white bg-stone-700 AND overflow-hidden"
+      className="absolute shadow-2xl text-white bg-stone-700 AND overflow-hidden top-40 left-40"
       dragConstraints={ bounds }
       dragElastic={ 0 }
       initial={ { opacity: 0, scale: 0.85 } }
@@ -40,7 +42,9 @@ function Window({ children, title, bounds, onClose }: Props) {
         <WindowHeader title={ title } onClose={ () => onClose() } />
       </div>
       <div className="bg-stone-700 p-0.5">
-        { children }
+        <div className={ `w-${width} h-${height}` }>
+          { children }
+        </div>
       </div>
     </motion.div>
   </>;

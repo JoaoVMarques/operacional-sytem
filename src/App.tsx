@@ -23,11 +23,15 @@ function App() {
     <AnimatePresence>
       { windows.terminal && (
         <Window title="Terminal ~ JoaoVMarques@Portfolio"
+          height={ 125 }
+          width={ 225 }
           bounds={ desktopRef }
           onClose={ () => closeWindow('terminal') }>
           <Terminal />
         </Window>
       ) }
+    </AnimatePresence>
+    <AnimatePresence>
       {
         windows.musics && (
           <Window title={ t('desktop_apps.radio_name') } bounds={ desktopRef } onClose={ () => closeWindow('musics') }>
