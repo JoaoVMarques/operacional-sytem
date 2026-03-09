@@ -23,8 +23,8 @@ function App() {
     <AnimatePresence>
       { windows.terminal && (
         <Window title="Terminal ~ JoaoVMarques@Portfolio"
-          height={ 125 }
-          width={ 225 }
+          height={ 600 }
+          width={ 900 }
           bounds={ desktopRef }
           onClose={ () => closeWindow('terminal') }>
           <Terminal />

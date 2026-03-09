@@ -3,24 +3,26 @@ import WindowHeader from './WindowHeader';
 import { motion, useDragControls } from 'framer-motion';
 
 interface Props {
-  children: React.ReactNode
-  title: string
-  bounds: RefObject<HTMLDivElement>
-  width?: number
-  height?: number
-  onClose: () => void
+  children: React.ReactNode;
+  title: string;
+  bounds: RefObject<HTMLDivElement>;
+  width?: number;
+  height?: number;
+  onClose: () => void;
 }
 
 function Window({ children, title, bounds, onClose, width, height }: Props) {
   const dragControls = useDragControls();
 
-  return <>
+  return (
     <motion.div
       drag
       dragMomentum={ false }
       dragControls={ dragControls }
       dragListener={ false }
-      className="absolute shadow-2xl text-white bg-stone-700 AND overflow-hidden top-40 left-40"
+      className="absolute shadow-2xl text-white bg-stone-700 overflow-hidden top-40 left-40 flex flex-col"
+      style={ { width, height } }
+
       dragConstraints={ bounds }
       dragElastic={ 0 }
       initial={ { opacity: 0, scale: 0.85 } }
@@ -37,17 +39,15 @@ function Window({ children, title, bounds, onClose, width, height }: Props) {
     >
       <div
         onPointerDown={ (e) => dragControls.start(e) }
-        className="cursor-grab active:cursor-grabbing"
+        className="cursor-grab active:cursor-grabbing shrink-0"
       >
-        <WindowHeader title={ title } onClose={ () => onClose() } />
+        <WindowHeader title={ title } onClose={ onClose } />
       </div>
-      <div className="bg-stone-700 p-0.5">
-        <div className={ `w-${width} h-${height}` }>
-          { children }
-        </div>
+      <div className="bg-stone-700 p-0.5 w-full flex-1 overflow-hidden flex flex-col min-h-0">
+        { children }
       </div>
     </motion.div>
-  </>;
+  );
 }
 
 export default Window;
