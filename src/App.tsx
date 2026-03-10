@@ -1,61 +1,46 @@
 import { useRef } from 'react';
-import Terminal from './apps/terminal/Terminal';
 import Window from './components/Window/Window';
 import { useWindowStore } from './store/useWindow';
 import DesktopIcon from './components/Desktop/DesktopIcon';
-import { Music4, SquareTerminal, FolderCode } from 'lucide-react';
-import { useLanguageStore } from './store/useLanguageStore';
-import Musics from './apps/musics/Musics';
 import { AnimatePresence } from 'framer-motion';
-import Projects from './apps/projects/Projects';
+import { appsInfo } from './data/apps';
 
 function App() {
   const desktopRef = useRef(null);
   const { windows, closeWindow, openWindow } = useWindowStore();
-  const { t } = useLanguageStore();
 
   return <div
     ref={ desktopRef }
     className="h-dvh w-screen bg-cover bg-center bg-gray-700 overflow-hidden">
-    <div className="p-4 flex flex-col gap-4 flex-wrap max-h-screen">
-      <DesktopIcon icon={ SquareTerminal } label="Terminal" onClick={ () => openWindow('terminal') }  />
-      <DesktopIcon icon={ Music4 } label={ t('desktop_apps.radio_name') } onClick={ () => openWindow('musics') }  />
-      <DesktopIcon icon={ FolderCode }
-        label={ t('desktop_apps.projects_name') }
-        onClick={ () => openWindow('projects') } />
-    </div>
-    <AnimatePresence>
-      { windows.terminal && (
-        <Window title="Terminal ~ JoaoVMarques@Portfolio"
-          height={ 600 }
-          width={ 900 }
-          bounds={ desktopRef }
-          onClose={ () => closeWindow('terminal') }>
-          <Terminal />
-        </Window>
-      ) }
-    </AnimatePresence>
-    <AnimatePresence>
-      {
-        windows.musics && (
-          <Window title={ t('desktop_apps.radio_name') } bounds={ desktopRef } onClose={ () => closeWindow('musics') }>
-            <Musics />
-          </Window>
-        )
-      }
-    </AnimatePresence>
-    <AnimatePresence>
-      {
-        windows.projects && (
-          <Window title={ t('desktop_apps.projects_name') }
-            bounds={ desktopRef }
-            onClose={ () =>  closeWindow('projects') }>
-            <Projects />
-          </Window>
-        )
-      }
-    </AnimatePresence>
-
+    {
+      appsInfo.map((app) => {
+        return (
+          <div key={ app.id }>
+            <div className="p-4 flex flex-col gap-4 flex-wrap max-h-screen">
+              <DesktopIcon
+                icon={ app.icon }
+                label={ app.label }
+                onClick={ () => openWindow(app.id) }
+              />
+            </div>
+            <AnimatePresence>
+              {
+                windows[app.id] && (
+                  <Window
+                    title={ app.title }
+                    width={ app.defaultSize?.width }
+                    height={ app.defaultSize?.height }
+                    bounds={ desktopRef }
+                    onClose={ () => closeWindow(app.id) }>
+                    { app.windowContent }
+                  </Window>
+                )
+              }
+            </AnimatePresence>
+          </div>
+        );
+      })
+    }
   </div>;
 }
 

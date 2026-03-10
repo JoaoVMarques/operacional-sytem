@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-type AppId = 'terminal' | 'musics' | 'projects'
+export type AppId = 'terminal' | 'musics' | 'projects'
 
 interface WindowState {
   windows: Record<AppId, boolean>;
