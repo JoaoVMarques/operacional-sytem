@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-type AppId = 'terminal' | 'musics'
+type AppId = 'terminal' | 'musics' | 'projects'
 
 interface WindowState {
   windows: Record<AppId, boolean>;
@@ -13,6 +13,7 @@ export const useWindowStore = create<WindowState>((set) => ({
   windows: {
     terminal: true,
     musics: false,
+    projects: false,
   },
 
   openWindow: (id) => set((state) => ({

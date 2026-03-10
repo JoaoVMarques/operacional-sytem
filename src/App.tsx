@@ -3,10 +3,11 @@ import Terminal from './apps/terminal/Terminal';
 import Window from './components/Window/Window';
 import { useWindowStore } from './store/useWindow';
 import DesktopIcon from './components/Desktop/DesktopIcon';
-import { Music4, SquareTerminal } from 'lucide-react';
+import { Music4, SquareTerminal, FolderCode } from 'lucide-react';
 import { useLanguageStore } from './store/useLanguageStore';
 import Musics from './apps/musics/Musics';
 import { AnimatePresence } from 'framer-motion';
+import Projects from './apps/projects/Projects';
 
 function App() {
   const desktopRef = useRef(null);
@@ -19,6 +20,9 @@ function App() {
     <div className="p-4 flex flex-col gap-4 flex-wrap max-h-screen">
       <DesktopIcon icon={ SquareTerminal } label="Terminal" onClick={ () => openWindow('terminal') }  />
       <DesktopIcon icon={ Music4 } label={ t('desktop_apps.radio_name') } onClick={ () => openWindow('musics') }  />
+      <DesktopIcon icon={ FolderCode }
+        label={ t('desktop_apps.projects_name') }
+        onClick={ () => openWindow('projects') } />
     </div>
     <AnimatePresence>
       { windows.terminal && (
@@ -36,6 +40,17 @@ function App() {
         windows.musics && (
           <Window title={ t('desktop_apps.radio_name') } bounds={ desktopRef } onClose={ () => closeWindow('musics') }>
             <Musics />
+          </Window>
+        )
+      }
+    </AnimatePresence>
+    <AnimatePresence>
+      {
+        windows.projects && (
+          <Window title={ t('desktop_apps.projects_name') }
+            bounds={ desktopRef }
+            onClose={ () =>  closeWindow('projects') }>
+            <Projects />
           </Window>
         )
       }

@@ -6,6 +6,7 @@ const en = {
   },
   desktop_apps: {
     radio_name: 'Musics',
+    projects_name: 'Projects',
   },
   musics: {
     playing_song: 'Playing:',
@@ -44,6 +45,7 @@ const pt: Dictionary = {
   },
   desktop_apps: {
     radio_name: 'Músicas',
+    projects_name: 'Projetos',
   },
   musics: {
     playing_song: 'Tocando:',
