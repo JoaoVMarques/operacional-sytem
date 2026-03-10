@@ -39,7 +39,7 @@ function Musics() {
   };
 
   return (
-    <div className="bg-gray-800 p-2">
+    <div className="bg-gray-800 h-full p-2">
       { hasStarted && (
         <iframe
           ref={ iframeRef }

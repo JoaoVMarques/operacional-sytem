@@ -38,6 +38,7 @@ export const appsInfo: AppsType[] = [
     icon: FolderCode,
     label: t('desktop_apps.projects_name'),
     title: t('desktop_apps.projects_name'),
+    defaultSize: { width: 750, height: 700 },
     windowContent: <Projects />,
   },
 ];

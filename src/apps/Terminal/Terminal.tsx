@@ -4,7 +4,7 @@ import renderAnimatedText from './animateText';
 import { useEffect, useRef, useState } from 'react';
 import useCommand from './Commands';
 
-// text-green-500 text-blue-300 text-purple-500 text-amber-400 text-purple-400 text-purple-300 text-purple-200 text-bold text-blue-300
+// text-green-500 text-blue-300 text-purple-500 text-amber-400 text-purple-400 text-purple-300 text-purple-200 text-blue-300
 function Terminal() {
   const { t } = useLanguageStore();
   const [isFocus, setIsFocus] = useState(false);

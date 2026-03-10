@@ -20,7 +20,7 @@ function Window({ children, title, bounds, onClose, width, height }: Props) {
       dragMomentum={ false }
       dragControls={ dragControls }
       dragListener={ false }
-      className="absolute shadow-2xl text-white bg-stone-700 overflow-hidden top-40 left-40 flex flex-col"
+      className="absolute shadow-2xl text-white rounded-t-md bg-stone-700 overflow-hidden top-40 left-40 flex flex-col"
       style={ { width, height } }
 
       dragConstraints={ bounds }
