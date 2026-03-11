@@ -4,13 +4,13 @@ import { useWindowStore } from './store/useWindow';
 import DesktopIcon from './components/Desktop/DesktopIcon';
 import { AnimatePresence } from 'framer-motion';
 import { appsInfo } from './data/apps';
-import { Terminal } from 'lucide-react';
-import { useLanguageStore } from './store/useLanguageStore';
+import DesktopMenu from './components/Desktop/DesktopMenu';
+import { useSettingsStore } from './store/useSettings';
 
 function App() {
   const desktopRef = useRef(null);
   const { windows, closeWindow, openWindow, setActiveWindow, activeWindow } = useWindowStore();
-  const { t } = useLanguageStore();
+  const { themeHexCode } = useSettingsStore();
 
   const [menu, setMenu] = useState({
     isOpen: false,
@@ -36,7 +36,8 @@ function App() {
   return (
     <div
       ref={ desktopRef }
-      className="h-dvh w-screen bg-cover bg-center bg-gray-700 overflow-hidden"
+      className="h-dvh w-screen bg-cover bg-center overflow-hidden"
+      style={ { background: themeHexCode() } }
       onContextMenu={ handleContextMenu }
       onClick={ closeMenu }
     >
@@ -76,28 +77,7 @@ function App() {
         })
       }
       { menu.isOpen && (
-        <div
-          className="absolute bg-slate-800 border border-slate-600 shadow-2xl rounded-md py-1 w-48 z-100 flex flex-col"
-          style={ { top: menu.mouseY, left: menu.mouseX } }
-        >
-          <button
-            onClick={ () => openWindow('terminal') }
-            className="flex
-            items-center
-            gap-2.5
-            text-left
-            px-4
-            py-1.5
-            text-sm
-            text-gray-200
-            hover:bg-slate-700
-            hover:text-white
-            transition-colors"
-          >
-            <Terminal size={ 16 } className="text-slate-300" />
-            <span>{ t('menu.open_terminal') }</span>
-          </button>
-        </div>
+        < DesktopMenu menu={ menu } />
       ) }
     </div>
   );
