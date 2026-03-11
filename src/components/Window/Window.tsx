@@ -8,10 +8,12 @@ interface Props {
   bounds: RefObject<HTMLDivElement>;
   width?: number;
   height?: number;
+  isActive: boolean;
+  onFocus: () => void;
   onClose: () => void;
 }
 
-function Window({ children, title, bounds, onClose, width, height }: Props) {
+function Window({ children, title, bounds, onClose, width, height, onFocus, isActive }: Props) {
   const dragControls = useDragControls();
 
   return (
@@ -20,7 +22,8 @@ function Window({ children, title, bounds, onClose, width, height }: Props) {
       dragMomentum={ false }
       dragControls={ dragControls }
       dragListener={ false }
-      className="absolute shadow-2xl text-white rounded-t-md bg-stone-700 overflow-hidden top-40 left-40 flex flex-col"
+      onPointerDown={ onFocus }
+      className={ `absolute shadow-2xl text-white rounded-t-md bg-stone-700 overflow-hidden top-40 left-40 flex flex-col ${isActive ? 'z-50' : 'z-10'}` }
       style={ { width, height } }
 
       dragConstraints={ bounds }

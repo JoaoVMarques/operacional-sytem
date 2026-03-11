@@ -7,7 +7,7 @@ import { appsInfo } from './data/apps';
 
 function App() {
   const desktopRef = useRef(null);
-  const { windows, closeWindow, openWindow } = useWindowStore();
+  const { windows, closeWindow, openWindow, setActiveWindow, activeWindow } = useWindowStore();
 
   return <div
     ref={ desktopRef }
@@ -31,7 +31,9 @@ function App() {
                     width={ app.defaultSize?.width }
                     height={ app.defaultSize?.height }
                     bounds={ desktopRef }
-                    onClose={ () => closeWindow(app.id) }>
+                    onClose={ () => closeWindow(app.id) }
+                    isActive={ activeWindow === app.id }
+                    onFocus={ () => setActiveWindow(app.id) }>
                     { app.windowContent }
                   </Window>
                 )
