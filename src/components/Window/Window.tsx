@@ -23,6 +23,10 @@ function Window({ children, title, bounds, onClose, width, height, onFocus, isAc
       dragControls={ dragControls }
       dragListener={ false }
       onPointerDown={ onFocus }
+      onContextMenu={ (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+      } }
       className={ `absolute shadow-2xl text-white rounded-t-md bg-stone-700 overflow-hidden top-40 left-40 flex flex-col ${isActive ? 'z-50' : 'z-10'}` }
       style={ { width, height } }
 
