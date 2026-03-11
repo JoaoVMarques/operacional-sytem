@@ -6,6 +6,7 @@ const en = {
   },
   projects: {
     detail_button: 'View Details',
+    portfolio_OS_descriptions: 'An interactive and fun OS-themed portfolio inspired by Linux and Windows.',
   },
   desktop_apps: {
     radio_name: 'Musics',
@@ -51,6 +52,7 @@ const pt: Dictionary = {
   },
   projects: {
     detail_button: 'Ver detalhes',
+    portfolio_OS_descriptions: 'Um portfólio legal e divertido que simula um sistema OS baseado no linux + windows',
   },
   desktop_apps: {
     radio_name: 'Músicas',
