@@ -4,6 +4,9 @@ const en = {
     unifacvest_course: 'B.S. in Computer Science',
     course_ongoing: 'In Progress',
   },
+  projects: {
+    detail_button: 'View Details',
+  },
   desktop_apps: {
     radio_name: 'Musics',
     projects_name: 'Projects',
@@ -42,6 +45,9 @@ const pt: Dictionary = {
     trybe_name: 'Desenvolvimento Web Full Stack',
     unifacvest_course: 'Bacharelado em Ciência da computação',
     course_ongoing: 'Cursando',
+  },
+  projects: {
+    detail_button: 'Ver detalhes',
   },
   desktop_apps: {
     radio_name: 'Músicas',
