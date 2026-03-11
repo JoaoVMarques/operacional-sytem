@@ -4,10 +4,13 @@ import { useWindowStore } from './store/useWindow';
 import DesktopIcon from './components/Desktop/DesktopIcon';
 import { AnimatePresence } from 'framer-motion';
 import { appsInfo } from './data/apps';
+import { Terminal } from 'lucide-react';
+import { useLanguageStore } from './store/useLanguageStore';
 
 function App() {
   const desktopRef = useRef(null);
   const { windows, closeWindow, openWindow, setActiveWindow, activeWindow } = useWindowStore();
+  const { t } = useLanguageStore();
 
   const [menu, setMenu] = useState({
     isOpen: false,
@@ -58,7 +61,11 @@ function App() {
                       bounds={ desktopRef }
                       onClose={ () => closeWindow(app.id) }
                       isActive={ activeWindow === app.id }
-                      onFocus={ () => setActiveWindow(app.id) }>
+                      onFocus={ () => {
+                        setActiveWindow(app.id);
+                        closeMenu();
+                      } }
+                    >
                       { app.windowContent }
                     </Window>
                   )
@@ -74,25 +81,21 @@ function App() {
           style={ { top: menu.mouseY, left: menu.mouseX } }
         >
           <button
-            className="text-left
+            onClick={ () => openWindow('terminal') }
+            className="flex
+            items-center
+            gap-2.5
+            text-left
             px-4
             py-1.5
             text-sm
             text-gray-200
             hover:bg-slate-700
             hover:text-white
-            transition-colors">
-            PlaceHolder
-          </button>
-          <button className="text-left
-          px-4
-          py-1.5
-          text-sm
-          text-gray-200
-          hover:bg-slate-700
-          hover:text-white
-          transition-colors">
-            PlaceHolder²
+            transition-colors"
+          >
+            <Terminal size={ 16 } className="text-slate-300" />
+            <span>{ t('menu.open_terminal') }</span>
           </button>
         </div>
       ) }
