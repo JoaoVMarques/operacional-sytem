@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import renderAnimatedText from './animateText';
 import { useEffect, useRef, useState } from 'react';
 import useCommand from './Commands';
+import { useWindowStore } from '../../store/useWindow';
 
 // text-green-500 text-blue-300 text-purple-500 text-amber-400 text-purple-400 text-purple-300 text-purple-200 text-blue-300
 function Terminal() {
@@ -22,10 +23,11 @@ function Terminal() {
 
   const welcomeText = t('terminal.welcome');
   const welcomeDescription = t('terminal.welcome_description');
-  const terminalHelp = t('terminal.help_message');
+  const terminalHelp = t('terminal.command.help_message');
   const fullWelcomeText = `${welcomeText}\n${welcomeDescription}\n \n${terminalHelp}`;
 
   const [commandHistory, setCommandHistory] = useState<string[]>([fullWelcomeText]);
+  const { openWindow } = useWindowStore();
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'auto' });
@@ -36,12 +38,16 @@ function Terminal() {
     const response = useCommand(inputValue);
     setIsAnimationComplete(true);
 
-    if (response.command) {
-      if (response.command === 'clear') {
-        setCommandHistory([response.message]);
-        setInputValue('');
-        return;
-      }
+    if (response.action === 'clear') {
+      setCommandHistory([response.message]);
+      setInputValue('');
+      return;
+    }
+
+    if (response.action === 'open_projects') {
+      setTimeout(() => {
+        openWindow('projects');
+      }, 1000);
     }
 
     {setCommandHistory((prev) => [

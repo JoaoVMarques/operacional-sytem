@@ -18,22 +18,25 @@ const en = {
   terminal: {
     welcome: 'Welcome to my {{text-green-500|Portfolio}} !',
     welcome_description: 'Hello, My name is {{text-blue-300|João Victor Marques}} and I am Fullstack Developer.',
-    help_message: "type '{{text-purple-500|help}}' to see the list of available commands.",
+    categories: {
+      utilities: 'Utilities',
+      information: 'Information',
+    },
     command: {
+      help_message: "Type '{{text-purple-500|help}}' to see the list of available commands.",
       help_title: '{{text-amber-400 font-bold|Available commands:}} \n ',
       help_description: 'See list of available commands.',
-      help_category: 'Utilities',
+
+      projects_message: '{{text-green-500|Opening projects app...}}',
+      projects_description: 'Open projects app window.',
 
       clear_description: 'Clear the terminal.',
-      clear_category: 'Utilities',
 
       contact_title: '{{text-amber-400 font-bold|My Contacts:}}\n',
       contact_description: 'Show My Contact information.',
-      contact_category: 'information',
 
       courses_title: '{{text-amber-400 font-bold|Courses and Certifications:}}\n',
       courses_description: 'List courses and certifications.',
-      courses_category: 'information',
     },
   },
 };
@@ -60,22 +63,25 @@ const pt: Dictionary = {
   terminal: {
     welcome: 'Bem-vindo ao meu {{text-orange-500|Portfólio}} !',
     welcome_description: 'Olá, Meu nome é {{text-blue-300|João Victor Marques}} e eu sou desenvolvedor full-stack.',
-    help_message: "digite '{{text-purple-500|help}}' para ver a lista de comando validos.",
+    categories: {
+      utilities: 'Utilitários',
+      information: 'Informação',
+    },
     command: {
+      help_message: "Digite '{{text-purple-500|help}}' para ver a lista de comando validos.",
       help_title: '{{text-amber-400 font-bold|Comandos válidos:}} \n ',
       help_description: 'Veja a lista de comandos válidos.',
-      help_category: 'Utilitários',
+
+      projects_message: '{{text-green-500|Abrindo o aplicativo de projetos...}}',
+      projects_description: 'Abrir a janela de projetos.',
 
       clear_description: 'Limpa o terminal.',
-      clear_category: 'Utilitários',
 
       contact_title: '{{text-amber-400 font-bold|Meus contatos:}}\n',
-      contact_description: 'Show My Contact information.',
-      contact_category: 'informação',
+      contact_description: 'Mostre minhas informações de contato.',
 
       courses_title: '{{text-amber-400 font-bold|Cursos e Certificações:}}\n',
       courses_description: 'Mostra meus cursos e certificações.',
-      courses_category: 'informação',
     },
   },
 };

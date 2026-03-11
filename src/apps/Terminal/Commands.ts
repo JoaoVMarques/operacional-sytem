@@ -6,7 +6,7 @@ type CommandResponse = {
   message: string;
   description: string;
   category: string;
-  command?: string;
+  action?: 'clear' | 'open_projects';
 };
 
 const { t } = useLanguageStore.getState();
@@ -56,30 +56,37 @@ const coursesMessage = () => {
 };
 
 const terminalCommands: Record<string, (isALoop?: boolean) => CommandResponse> = {
-  contact: () => { return {
+  contact: () => ({
     message: contactMessage(),
     description: t('terminal.command.contact_description'),
-    category: t('terminal.command.contact_category') };
-  },
+    category: t('terminal.categories.information'),
+  }),
 
-  courses: () => { return {
+  courses: () => ({
     message: coursesMessage(),
     description: t('terminal.command.courses_description'),
-    category: t('terminal.command.courses_category') };
-  },
+    category: t('terminal.categories.information'),
+  }),
 
-  help: (isALoop?: boolean) => { return {
+  projects: () => ({
+    message: t('terminal.command.projects_message'),
+    description: t('terminal.command.projects_description'),
+    category: t('terminal.categories.information'),
+    action: 'open_projects',
+  }),
+
+  help: (isALoop?: boolean) => ({
     message: isALoop ? '' : helpMessage(terminalCommands),
     description: t('terminal.command.help_description'),
-    category: t('terminal.command.help_category') };
-  },
+    category: t('terminal.categories.utilities'),
+  }),
 
-  clear: () => { return {
-    message: t('terminal.help_message'),
-    command: 'clear',
+  clear: () => ({
+    message: t('terminal.command.help_message'),
     description: t('terminal.command.clear_description'),
-    category: t('terminal.command.clear_category')};
-  },
+    category: t('terminal.categories.utilities'),
+    action: 'clear',
+  }),
 };
 
 const useCommand = (commandName: string) => {
@@ -88,7 +95,6 @@ const useCommand = (commandName: string) => {
 
   if (command) {
     return command();
-
   }
 
   return { message: `Command not found: ${commandName}. Type '{{text-purple-500|help}}' for a list of commands.` } as CommandResponse;
