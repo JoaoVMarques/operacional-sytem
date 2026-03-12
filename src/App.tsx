@@ -4,7 +4,7 @@ import { useWindowStore } from './store/useWindow';
 import DesktopIcon from './components/Desktop/DesktopIcon';
 import { AnimatePresence } from 'framer-motion';
 import { appsInfo } from './data/apps';
-import DesktopMenu from './components/Desktop/DesktopMenu';
+import DesktopMenu from './components/Desktop/DesktopMenu/DesktopMenu';
 import { useSettingsStore } from './store/useSettings';
 
 function App() {

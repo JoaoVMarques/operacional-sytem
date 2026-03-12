@@ -1,9 +1,10 @@
 import { ChevronRight, Wallpaper, Terminal } from 'lucide-react';
-import { useLanguageStore } from '../../store/useLanguageStore';
-import { useWindowStore } from '../../store/useWindow';
-import { useSettingsStore } from '../../store/useSettings';
+import { useLanguageStore } from '../../../store/useLanguageStore';
+import { useWindowStore } from '../../../store/useWindow';
+import { useSettingsStore } from '../../../store/useSettings';
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import WallpaperMenuButton from './WallpaperMenuButton';
 
 interface props {
   menu: {
@@ -72,7 +73,7 @@ function DesktopMenu({ menu }: props) {
             <motion.div
               exit={ {
                 opacity: 1,
-                transition: { delay: 1 },
+                transition: { delay: 0.6 },
               } }
               className="absolute
               left-full
@@ -89,29 +90,9 @@ function DesktopMenu({ menu }: props) {
               py-1
               z-101"
             >
-              <button
-                onClick={ () => setTheme('default') }
-                className="text-left
-                px-4
-                py-1.5
-                text-sm
-                text-gray-200
-                hover:bg-slate-700
-                hover:text-white
-                transition-colors">
-                Default
-              </button>
-              <button onClick={ () => setTheme('darkBlue') }
-                className="text-left
-                px-4
-                py-1.5
-                text-sm
-                text-gray-200
-                hover:bg-slate-700
-                hover:text-white
-                transition-colors">
-                Dark Blue
-              </button>
+              <WallpaperMenuButton setTheme={ setTheme } themeKey="default" />
+              <WallpaperMenuButton setTheme={ setTheme } themeKey="twilight" />
+              <WallpaperMenuButton setTheme={ setTheme } themeKey="black" />
             </motion.div>
           ) }
         </AnimatePresence>

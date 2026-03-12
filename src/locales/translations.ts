@@ -10,6 +10,11 @@ const en = {
   },
   menu: {
     open_terminal: 'Open Terminal',
+    color: {
+      default: 'Default',
+      twilight: 'Twilight',
+      black: 'Black',
+    },
   },
   desktop_apps: {
     radio_name: 'Musics',
@@ -59,6 +64,11 @@ const pt: Dictionary = {
   },
   menu: {
     open_terminal: 'Abrir terminal',
+    color: {
+      default: 'Padrão',
+      twilight: 'Twilight',
+      black: 'Preto',
+    },
   },
   desktop_apps: {
     radio_name: 'Músicas',
