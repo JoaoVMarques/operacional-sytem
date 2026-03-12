@@ -6,11 +6,12 @@ import { AnimatePresence } from 'framer-motion';
 import { appsInfo } from './data/apps';
 import DesktopMenu from './components/Desktop/DesktopMenu/DesktopMenu';
 import { useSettingsStore } from './store/useSettings';
+import StarryWallpaper from './components/Desktop/Walllpapers/StarryWallpaper';
 
 function App() {
   const desktopRef = useRef(null);
   const { windows, closeWindow, openWindow, setActiveWindow, activeWindow } = useWindowStore();
-  const { themeHexCode } = useSettingsStore();
+  const { themeHexCode, currentTheme } = useSettingsStore();
 
   const [menu, setMenu] = useState({
     isOpen: false,
@@ -37,10 +38,14 @@ function App() {
     <div
       ref={ desktopRef }
       className="h-dvh w-screen bg-cover bg-center overflow-hidden"
-      style={ { background: themeHexCode() } }
       onContextMenu={ handleContextMenu }
       onClick={ closeMenu }
     >
+      { currentTheme === 'stars' ? (
+        <StarryWallpaper  />
+      ) : (
+        <div className="absolute inset-0 -z-10" style={ { background: themeHexCode() } }/>
+      ) }
       {
         appsInfo.map((app) => {
           return (

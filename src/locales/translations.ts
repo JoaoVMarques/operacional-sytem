@@ -10,10 +10,11 @@ const en = {
   },
   menu: {
     open_terminal: 'Open Terminal',
-    color: {
+    wallpaper: {
       default: 'Default',
       twilight: 'Twilight',
       black: 'Black',
+      stars: 'Stars',
     },
   },
   desktop_apps: {
@@ -64,10 +65,11 @@ const pt: Dictionary = {
   },
   menu: {
     open_terminal: 'Abrir terminal',
-    color: {
+    wallpaper: {
       default: 'Padrão',
       twilight: 'Twilight',
       black: 'Preto',
+      stars: 'Estrelas',
     },
   },
   desktop_apps: {

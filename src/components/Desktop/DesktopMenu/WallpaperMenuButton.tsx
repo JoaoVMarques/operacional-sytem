@@ -19,7 +19,7 @@ function WallpaperMenuButton({ setTheme, themeKey }: props) {
       hover:bg-slate-700
       hover:text-white
       transition-colors">
-      { t(`menu.color.${themeKey}`) }
+      { t(`menu.wallpaper.${themeKey}`) }
     </button>
   );
 }

@@ -93,6 +93,8 @@ function DesktopMenu({ menu }: props) {
               <WallpaperMenuButton setTheme={ setTheme } themeKey="default" />
               <WallpaperMenuButton setTheme={ setTheme } themeKey="twilight" />
               <WallpaperMenuButton setTheme={ setTheme } themeKey="black" />
+              <hr className="h-1 w-2/3 my-1 m-auto border-t border-gray-300 mb-1 rounded-sm" />
+              <WallpaperMenuButton setTheme={ setTheme } themeKey="stars" />
             </motion.div>
           ) }
         </AnimatePresence>
