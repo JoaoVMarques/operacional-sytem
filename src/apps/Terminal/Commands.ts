@@ -75,6 +75,12 @@ const terminalCommands: Record<string, (isALoop?: boolean) => CommandResponse> =
     action: 'open_projects',
   }),
 
+  aboutme: () => ({
+    message: t('terminal.command.aboutme_message'),
+    description: t('terminal.command.aboutme_description'),
+    category: t('terminal.categories.information'),
+  }),
+
   help: (isALoop?: boolean) => ({
     message: isALoop ? '' : helpMessage(terminalCommands),
     description: t('terminal.command.help_description'),

@@ -33,8 +33,13 @@ const en = {
       information: 'Information',
     },
     command: {
+      aboutme_message: ` Full-stack developer with 6+ years of solid experience across diverse projects, utilizing TypeScript, Python, and other technologies.\n I am actively seeking new professional opportunities
+with the goal of impacting millions of people through programming, collaborating with innovative teams, and sharing my knowledge with fellow professionals.`,
+      aboutme_title: '{{text-purple-400 font-bold|About me:}}\n',
+      aboutme_description: 'About me text',
+
       help_message: "Type '{{text-purple-500|help}}' to see the list of available commands.",
-      help_title: '{{text-amber-400 font-bold|Available commands:}} \n ',
+      help_title: '{{text-amber-400 font-bold|Available commands:}}\n ',
       help_description: 'See list of available commands.',
 
       projects_message: '{{text-green-500|Opening projects app...}}',
@@ -88,6 +93,11 @@ const pt: Dictionary = {
       information: 'Informação',
     },
     command: {
+      aboutme_message: ` Desenvolvedor full-stack com uma sólida experiência de 6+ anos em projetos diversos, utilizando TypeScript, Python e outras tecnologias.\n Busco ativamente novas oportunidades profissionais, com objetivo de impactar 
+milhões de pessoas por meio da programação, colaborando com equipes inovadoras e compartilhando meu conhecimento com outros profissionais.`,
+      aboutme_title: '{{text-purple-400 font-bold|Sobre mim:}}\n',
+      aboutme_description: 'Texto sobre mim',
+
       help_message: "Digite '{{text-purple-500|help}}' para ver a lista de comando validos.",
       help_title: '{{text-amber-400 font-bold|Comandos válidos:}} \n ',
       help_description: 'Veja a lista de comandos válidos.',

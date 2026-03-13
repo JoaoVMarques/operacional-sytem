@@ -110,7 +110,7 @@ function Terminal() {
     <div className="bg-black text-white p-4 font-mono h-full overflow-hidden overflow-y-auto"
       onClick={ () => isAnimationComplete && inputRef.current?.focus() }
     >
-      <div className="flex flex-col w-full">
+      <div className="flex flex-col w-full wrap-break-word">
         { commandHistory.map((line, index) => (
 
           <motion.div
@@ -119,7 +119,7 @@ function Terminal() {
             variants={ containerVariants }
             initial="hidden"
             animate="visible"
-            className="flex flex-wrap whitespace-pre-wrap mb-2 px-1.5"
+            className="whitespace-pre-wrap mb-2 px-1.5"
             onAnimationComplete={ () => setIsAnimationComplete(true) }
           >
             { renderAnimatedText(line) }
@@ -128,7 +128,7 @@ function Terminal() {
         )) }
       </div>
 
-      <span className="text-white [font-variant-ligatures:none] whitespace-pre-wrap break-all">
+      <span className="text-white [font-variant-ligatures:none] whitespace-pre-wrap wrap-break-word">
         <span className="text-green-400 font-bold">{ '$> ' }</span>
         { inputValue }
       </span>
