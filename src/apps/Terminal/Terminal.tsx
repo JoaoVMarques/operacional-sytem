@@ -19,10 +19,6 @@ function Terminal() {
   const bottomRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    console.log(inputHistory);
-  }, [inputHistory]);
-
-  useEffect(() => {
     if (inputRef.current && isAnimationComplete) {
       inputRef.current.focus();
     }

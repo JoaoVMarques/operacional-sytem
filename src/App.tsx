@@ -37,11 +37,10 @@ function App() {
   return (
     <div
       ref={ desktopRef }
-      className="h-dvh w-screen bg-cover bg-center overflow-hidden"
+      className="relative h-dvh w-screen bg-cover bg-center overflow-hidden"
       onContextMenu={ handleContextMenu }
       onClick={ closeMenu }
     >
-      { /* Refactor this later ! */ }
       { currentTheme === 'stars' ? (
         <StarryWallpaper  />
       ) : (
