@@ -41,6 +41,7 @@ function App() {
       onContextMenu={ handleContextMenu }
       onClick={ closeMenu }
     >
+      { /* Refactor this later ! */ }
       { currentTheme === 'stars' ? (
         <StarryWallpaper  />
       ) : (

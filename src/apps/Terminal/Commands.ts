@@ -89,7 +89,7 @@ const terminalCommands: Record<string, (isALoop?: boolean) => CommandResponse> =
   }),
 };
 
-const useCommand = (commandName: string) => {
+const processComand = (commandName: string) => {
   const cleanCommand = commandName.trim().toLowerCase();
   const command = terminalCommands[cleanCommand];
 
@@ -100,4 +100,4 @@ const useCommand = (commandName: string) => {
   return { message: `Command not found: ${commandName}. Type '{{text-purple-500|help}}' for a list of commands.` } as CommandResponse;
 };
 
-export default useCommand;
+export default processComand;

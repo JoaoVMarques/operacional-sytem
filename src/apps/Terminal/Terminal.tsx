@@ -1,8 +1,8 @@
 import { useLanguageStore } from '../../store/useLanguageStore';
 import { motion } from 'framer-motion';
 import renderAnimatedText from './animateText';
-import { useEffect, useRef, useState } from 'react';
-import useCommand from './Commands';
+import { KeyboardEvent, useEffect, useRef, useState } from 'react';
+import processComand from './Commands';
 import { useWindowStore } from '../../store/useWindow';
 
 // text-green-500 text-blue-300 text-purple-500 text-amber-400 text-purple-400 text-purple-300 text-purple-200 text-blue-300
@@ -11,9 +11,16 @@ function Terminal() {
   const [isFocus, setIsFocus] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [isAnimationComplete, setIsAnimationComplete] = useState(false);
+  const [inputHistoryIndex, setInputHistoryIndex] = useState(-1);
+  const [inputHistory, setInputHistory] = useState<string[]>([]);
+  const [tempInput, setTempInput] = useState('');
 
   const inputRef = useRef<HTMLInputElement>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    console.log(inputHistory);
+  }, [inputHistory]);
 
   useEffect(() => {
     if (inputRef.current && isAnimationComplete) {
@@ -33,9 +40,43 @@ function Terminal() {
     bottomRef.current?.scrollIntoView({ behavior: 'auto' });
   }, [commandHistory]);
 
+  const inputDetector = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'ArrowUp') {
+      e.preventDefault();
+
+      if (inputHistoryIndex === -1) {
+        setTempInput(inputValue);
+      }
+
+      if (inputHistory.length > 0 && inputHistoryIndex < inputHistory.length - 1) {
+        const nextIndex = inputHistoryIndex + 1;
+        setInputHistoryIndex(nextIndex);
+        setInputValue(inputHistory[nextIndex]);
+      }
+    }
+
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+
+      if (inputHistoryIndex > 0) {
+        const prevIndex = inputHistoryIndex - 1;
+        setInputHistoryIndex(prevIndex);
+        setInputValue(inputHistory[prevIndex]);
+      } else if (inputHistoryIndex === 0) {
+        setInputHistoryIndex(-1);
+        setInputValue(tempInput);
+      }
+    }
+  };
+
   const handleCommandSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const response = useCommand(inputValue);
+
+    if (!inputValue.trim()) {return;}
+    setInputHistory((prev) => [inputValue, ...prev]);
+    setInputHistoryIndex(-1);
+
+    const response = processComand(inputValue);
     setIsAnimationComplete(true);
 
     if (response.action === 'clear') {
@@ -50,11 +91,11 @@ function Terminal() {
       }, 1000);
     }
 
-    {setCommandHistory((prev) => [
+    setCommandHistory((prev) => [
       ...prev,
       `{{text-green-400 font-bold|$> }}${inputValue}\n `,
       response.message,
-    ]);}
+    ]);
 
     setInputValue('');
   };
@@ -108,9 +149,10 @@ function Terminal() {
           _
       </motion.span>
 
-      <form onSubmit={ (e) => handleCommandSubmit(e)  }>
+      <form onSubmit={ handleCommandSubmit  }>
         <input
           type="text"
+          onKeyDown={ inputDetector }
           onChange={ (e) => setInputValue(`${e.target.value}`) }
           value={ inputValue }
           onFocus={ () => { setIsFocus(true); } }
