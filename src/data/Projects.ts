@@ -31,4 +31,22 @@ export const projectsInfo: projectType[] = [
     description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the',
     technologies: [ { name: 'React', icon: Atom }, { name: 'Typescript', icon: Code } ],
   },
+  {
+    name: 'Placeholder 4',
+    img: placeholderImg,
+    description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the',
+    technologies: [ { name: 'React', icon: Atom }, { name: 'Typescript', icon: Code } ],
+  },
+  {
+    name: 'Placeholder 5',
+    img: placeholderImg,
+    description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the',
+    technologies: [ { name: 'React', icon: Atom }, { name: 'Typescript', icon: Code } ],
+  },
+  {
+    name: 'Placeholder 6',
+    img: placeholderImg,
+    description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the',
+    technologies: [ { name: 'React', icon: Atom }, { name: 'Typescript', icon: Code } ],
+  },
 ];

@@ -5,7 +5,7 @@ function Projects() {
   const { t } = useLanguageStore();
 
   return (
-    <div className="bg-gray-800 p-2 h-full">
+    <div className="bg-gray-800 p-2 h-full overflow-y-auto">
       <div className="grid grid-cols-3 gap-4 p-4">
         {
           projectsInfo.map((project) => {
