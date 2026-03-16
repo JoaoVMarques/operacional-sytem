@@ -8,8 +8,14 @@ interface SettingsState {
   setTheme: (theme: ThemeKey) => void;
 }
 
+const loadTheme = () => {
+  const isWallpaper = storageLoad('wallpaper');
+  return isWallpaper ? isWallpaper : 'default';
+};
+
 export const useSettingsStore = create<SettingsState>((set, get) => ({
-  currentTheme: storageLoad('wallpaper', 'default') as ThemeKey,
+  currentTheme: loadTheme() as ThemeKey,
+
   themeHexCode: () => { return themeColors[get().currentTheme]; },
   setTheme: (theme) => {
     storageSave('wallpaper', theme);

@@ -2,11 +2,11 @@ export const storageSave = (label: string, content: string) => {
   localStorage.setItem(label, content);
 };
 
-export const storageLoad = (label: string, defaultContent: string) => {
+export const storageLoad = (label: string) => {
   const savedContent = localStorage.getItem(label);
 
   if (!savedContent) {
-    return defaultContent;
+    return false;
   }
 
   return savedContent;
