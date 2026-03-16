@@ -1,12 +1,12 @@
 import { useRef, useState } from 'react';
-import Window from './components/Window/Window';
+import Window from './components/window/Window';
 import { useWindowStore } from './store/useWindow';
-import DesktopIcon from './components/Desktop/DesktopIcon';
+import DesktopIcon from './components/desktop/DesktopIcon';
 import { AnimatePresence } from 'framer-motion';
 import { appsInfo } from './data/apps';
-import DesktopMenu from './components/Desktop/DesktopMenu/DesktopMenu';
+import DesktopMenu from './components/desktop/desktopMenu/DesktopMenu';
 import { useSettingsStore } from './store/useSettings';
-import StarryWallpaper from './components/Desktop/Walllpapers/StarryWallpaper';
+import StarryWallpaper from './components/desktop/walllpapers/StarryWallpaper';
 
 function App() {
   const desktopRef = useRef(null);

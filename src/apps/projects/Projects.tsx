@@ -32,7 +32,7 @@ function Projects() {
                 <div className="px-4 flex flex-col flex-1 pb-4">
                   <span className="font-bold">{ project.name }</span>
                   <p className="text-sm text-gray-400 mt-1">{ project.description }</p>
-                  <div className="flex flex-wrap gap-1 mt-2 mb-4">
+                  <div className="flex flex-wrap gap-1 mt-auto mb-4">
                     { project.technologies.map((tech) => {
                       const TechIcon = tech.icon;
 
@@ -57,7 +57,6 @@ function Projects() {
                     }) }
                   </div>
                   <button className="w-full
-                  mt-auto
                   py-2
                   bg-slate-700
                   hover:bg-slate-500
