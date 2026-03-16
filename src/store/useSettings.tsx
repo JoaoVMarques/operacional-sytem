@@ -1,12 +1,11 @@
 import { create } from 'zustand';
 import { themeColors, ThemeKey } from '../data/Themes';
 import { storageLoad, storageSave } from '../utils/storage';
-
 interface SettingsState {
   currentTheme: ThemeKey;
-  currentLanguage: 'pt' | 'en';
 
   themeHexCode: () => string;
+
   setTheme: (theme: ThemeKey) => void;
 }
 
@@ -16,11 +15,10 @@ const loadTheme = () => {
 };
 
 export const useSettingsStore = create<SettingsState>((set, get) => ({
-  currentLanguage: storageLoad('os-language') as 'pt' | 'en',
-
   currentTheme: loadTheme() as ThemeKey,
 
   themeHexCode: () => { return themeColors[get().currentTheme]; },
+
   setTheme: (theme) => {
     storageSave('os-wallpaper', theme);
     set({ currentTheme: theme });

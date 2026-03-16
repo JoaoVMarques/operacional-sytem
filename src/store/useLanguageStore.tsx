@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { dictionaries, Language } from '../locales/translations';
+import { storageLoad, storageSave } from '../utils/storage';
 
 interface LanguageState {
   language: Language
@@ -8,9 +9,12 @@ interface LanguageState {
 }
 
 export const useLanguageStore = create<LanguageState>((set, get) => ({
-  language: 'en',
+  language: storageLoad('os-language') as Language,
 
-  setLanguage: (lang) => set({ language: lang }),
+  setLanguage: (language: Language) => {
+    storageSave('os-language', language);
+    set({ language: language });
+  },
 
   t: (path: string) => {
     const keys = path.split('.');

@@ -1,12 +1,10 @@
 import Desktop from './components/desktop/Desktop';
-// import Start from './components/start/Start';
-// import { useSettingsStore } from './store/useSettings';
+import Start from './components/start/Start';
+import { useLanguageStore } from './store/useLanguageStore';
 
 function App() {
-  /*const { currentLanguage } = useSettingsStore();
-  return currentLanguage ? <Desktop /> : <Start />; */
-
-  return <Desktop />;
+  const { language } = useLanguageStore();
+  return language ? <Desktop /> : <Start />;
 }
 
 export default App;
