@@ -28,8 +28,12 @@ function Start() {
           <h1 className="text-3xl font-bold text-white mb-2 drop-shadow-md">
             Welcome / Bem-vindo
           </h1>
-          <p className="text-gray-300 text-sm">
+          <hr className="h-1 w-3/4 my-2 m-auto border-t border-gray-300 mb-1 rounded-sm" />
+          <p className="text-gray-300 text-sm mb-1">
             Select your language to continue
+          </p>
+          <p className="text-gray-300 text-sm">
+            Selecione seu idioma para continuar
           </p>
         </div>
 
