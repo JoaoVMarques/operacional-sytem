@@ -2,10 +2,16 @@ import { useSettingsStore } from '../../store/useSettings';
 import brFlag from '../../assets/images/flags/br-flag.png';
 import usaFlag from '../../assets/images/flags/usa-flag.png';
 import { useLanguageStore } from '../../store/useLanguageStore';
+import { Language } from '../../locales/translations';
 
 function Start() {
   const { themeHexCode} = useSettingsStore();
   const { setLanguage } = useLanguageStore();
+
+  const handleSelectLanguage = (lang: Language) => {
+    setLanguage(lang);
+    window.location.reload();
+  };
 
   return (
     <div
@@ -39,7 +45,7 @@ function Start() {
 
         <div className="flex gap-8 md:gap-12">
           <button
-            onClick={ () => setLanguage('pt') }
+            onClick={ () => handleSelectLanguage('pt') }
             className="group
             flex
             flex-col
@@ -74,7 +80,7 @@ function Start() {
             </span>
           </button>
           <button
-            onClick={ () => setLanguage('en') }
+            onClick={ () => handleSelectLanguage('en') }
             className="group
             flex
             flex-col
