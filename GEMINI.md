@@ -5,6 +5,7 @@
 - **Styling:** Tailwind CSS.
 - **Testing:** Playwright (E2E).
 - **Package Manager:** npm (or pnpm/yarn).
+- **Zustand:** For state management.
 
 ## Project Structure (Mandatory)
 ```
@@ -14,6 +15,7 @@ src/
   main.tsx -- React entrypoint
   App.tsx -- React main component
   apps/ -- all apps/windows separate each folder
+  store/ -- global state management
   components/ -- generics components
   data/ -- project data
 ```
@@ -38,8 +40,11 @@ src/
      ```tsx
      <h1
        className={ `text-6xl md:text-8xl font-black tracking-tighter text-transparent bg-clip-text 
-         bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600 animate-pulse` }
+         bg-linear-to-br from-cyan-400 via-blue-500 to-purple-600 animate-pulse` }
      >
        Title
      </h1>
      ```
+
+## Tests
+1. **Instead of "page.goto('http://localhost:5173/')" use "await page.goto('/')"**
