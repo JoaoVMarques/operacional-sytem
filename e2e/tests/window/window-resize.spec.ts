@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test('window can be resized from the right edge', async ({ page }) => {
-  await page.goto('http://localhost:5173/');
+  await page.goto('/');
 
   const title = page.getByText('Terminal ~ JoaoVMarques@Portfolio');
   const titleBar = title.locator('..');

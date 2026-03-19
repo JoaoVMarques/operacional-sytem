@@ -4,7 +4,7 @@ import Window from './components/window';
 export default function App() {
   return (
     <div
-      className={ `min-h-screen flex flex-col items-center justify-center bg-gray-700 
+      className={ `fixed inset-0 overflow-hidden bg-gray-700 
         text-slate-50 selection:bg-cyan-500` }
     >
       <Window title="Terminal ~ JoaoVMarques@Portfolio">

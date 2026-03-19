@@ -1,6 +1,6 @@
 function Terminal() {
   return (
-    <div className="w-full h-full bg-slate-950 p-1.5">
+    <div className="w-full h-full bg-slate-950 p-1.5 overflow-hidden">
       <h1>Content</h1>
     </div>
   );

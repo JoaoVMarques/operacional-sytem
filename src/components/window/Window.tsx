@@ -27,7 +27,7 @@ function Window({ children, title }: props) {
       >
         <div
           className={ `window-drag-handle w-full h-7 shrink-0 py-4 flex items-center 
-            justify-between px-3 cursor-move select-none` }
+            justify-between px-3 select-none` }
         >
           <h1 className="text-slate-50 mx-auto truncate">{ title }</h1>
           <div className="flex gap-2">
