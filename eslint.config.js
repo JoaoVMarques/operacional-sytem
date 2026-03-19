@@ -17,7 +17,7 @@ export default [
    * =========================== */
   {
     files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"],
-    ignores: ["eslint.config.js"],
+    ignores: ["eslint.config.js", "e2e/logs/**", "e2e/tests/**", "node_modules/**", "playwright-report/**", "test-results/**", "dist/**"],
 
     languageOptions: {
       globals: globals.browser,

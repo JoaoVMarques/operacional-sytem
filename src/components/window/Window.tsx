@@ -20,17 +20,16 @@ function Window({ children, title }: props) {
       minHeight={ 200 }
       bounds="parent"
       dragHandleClassName="window-drag-handle"
-      enableResizing={ false }
+      enableResizing={ true }
     >
       <div
-        className={ `bg-stone-700 p-1 w-full h-full flex flex-col shadow-2xl rounded-lg 
-          ring-1 ring-white/10 overflow-hidden` }
+        className={ 'bg-stone-700 p-0.5 w-full h-full flex flex-col shadow-2xl rounded-t-lg overflow-hidden' }
       >
         <div
-          className={ `window-drag-handle w-full h-10 shrink-0 flex items-center 
-            justify-between px-4 cursor-move select-none` }
+          className={ `window-drag-handle w-full h-7 shrink-0 py-4 flex items-center 
+            justify-between px-3 cursor-move select-none` }
         >
-          <h1 className="text-slate-50 mr-5 truncate">{ title }</h1>
+          <h1 className="text-slate-50 mx-auto truncate">{ title }</h1>
           <div className="flex gap-2">
             <WindowButton
               icon={ <Minus /> }
