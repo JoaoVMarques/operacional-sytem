@@ -1,0 +1,2 @@
+- [] Task 1.1: Make the window draggable (Can use some dependency for this)
+- [] Task 1.2: Make the window resizable in all sides of the window (like the windows OS does) (Can use some dependency for this prefably same as the task 1.1)
