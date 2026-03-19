@@ -32,17 +32,17 @@ function Window({ children, title }: props) {
           <h1 className="text-slate-50 mx-auto truncate">{ title }</h1>
           <div className="flex gap-2">
             <WindowButton
-              icon={ <Minus /> }
+              icon={ <Minus size={ 10 } strokeWidth={ 7 } /> }
               colorClass="bg-yellow-600"
               hoverColorClasss="hover:bg-yellow-700"
             />
             <WindowButton
-              icon={ <Plus /> }
+              icon={ <Plus size={ 10 } strokeWidth={ 7 } /> }
               colorClass="bg-green-500"
               hoverColorClasss="hover:bg-green-600"
             />
             <WindowButton
-              icon={ <X /> }
+              icon={ <X size={ 10 } strokeWidth={ 7 } /> }
               colorClass="bg-red-500"
               hoverColorClasss="hover:bg-red-600"
             />
