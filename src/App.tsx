@@ -7,7 +7,7 @@ export default function App() {
       className={ `min-h-screen flex flex-col items-center justify-center bg-gray-700 
         text-slate-50 selection:bg-cyan-500` }
     >
-      <Window title="Terminal">
+      <Window title="Terminal ~ JoaoVMarques@Portfolio">
         <Terminal />
       </Window>
     </div>
