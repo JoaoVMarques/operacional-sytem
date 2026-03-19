@@ -7,8 +7,16 @@
 - **Package Manager:** npm (or pnpm/yarn).
 
 ## Project Structure (Mandatory)
-- **Production Code:** All React components and logic MUST go inside the `src/` directory.
-- **E2E Tests:** All Playwright test files MUST go inside an `e2e/` directory at the root level (e.g., `e2e/tests/`, `e2e/pages/`). Do NOT create test files or folders in the root directory or inside `src/`.
+```
+e2e/
+  tests/ -- all tests
+src/
+  main.tsx -- React entrypoint
+  App.tsx -- React main component
+  apps/ -- all apps/windows separate each folder
+  components/ -- generics components
+  data/ -- project data
+```
 
 ## Code and Behavior Guidelines (Mandatory)
 1. **Strict Typing:** The use of the `any` type is strictly forbidden (absolutely no `:: any` or loose `any` throughout the code). All TypeScript must be strongly typed with well-defined interfaces or types.
