@@ -19,3 +19,19 @@
    - **Step 2:** Run the test in the terminal and show me the failure log.
    - **Step 3:** ONLY AFTER the test fails, write the React/Tailwind code in `src/` to make it pass.
 5. **Small Changes:** Keep changes granular. Avoid modifying too many files at the same time.
+6. **Linter Compliance (ESLint):** The project uses ESLint. You MUST write code that strictly complies with the rules defined in our `.eslintrc.json`. Before marking a code generation task as complete or asking for my final review, you must run the linting command (e.g., `npm run lint -- --fix` or `npx eslint . --fix`) in the background to self-correct any spacing, formatting, or strict equality issues. Never present code that fails the linter.
+
+## Styling Guidelines (Tailwind CSS)
+1. **Dynamic Inline Styles:** Strictly reserve inline `style={{}}` attributes ONLY for values that are highly dynamic and cannot be known at build time (e.g., dynamic theme hex codes from global state). Use standard Tailwind classes for everything else.
+2. **Interactive States (CSS over JS):** Heavily utilize Tailwind's `group`, `group-hover`, `group-focus`, and `peer` modifiers for component interactions (like hovering a card to highlight an image) instead of using React `onMouseEnter`/`onMouseLeave` state, whenever possible.
+3. **OS UI Paradigms:** For unbuntu/OS components, utilize Tailwind's modern modifiers for glassmorphism (e.g., `bg-black/30 backdrop-blur-md border border-white/10`) and depth (e.g., `ring`, `shadow-2xl`) to maintain the desktop operating system aesthetic.
+4. **Class Formatting & Linter Compliance:** Keep Tailwind `className` strings on a single line by default. ONLY break the string into multiple lines if it is strictly necessary to resolve a linter error (e.g., exceeding maximum line length). When breaking is required, you MUST use template literals with spaces inside the braces `{ \`...\` }` and group the classes logically onto new indented lines.
+   - **Example of correct multiline formatting:**
+     ```tsx
+     <h1
+       className={ `text-6xl md:text-8xl font-black tracking-tighter text-transparent bg-clip-text 
+         bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600 animate-pulse` }
+     >
+       Title
+     </h1>
+     ```
