@@ -24,7 +24,7 @@ src/
 1. **Strict Typing:** The use of the `any` type is strictly forbidden (absolutely no `:: any` or loose `any` throughout the code). All TypeScript must be strongly typed with well-defined interfaces or types.
 2. **No Hallucinations:** Never invent variables, methods, or properties that do not exist. Always check the official documentation before suggesting a solution or implementing an API.
 3. **Review-Driven Method:** Development follows the Pair Programming philosophy. You (AI) must plan and explain what you are going to do. Wait for my approval before generating or modifying files in bulk or running terminal commands.
-4. **Visual Test-Driven Development (TDD) Workflow:** You must strictly follow these 3 steps for every new feature:
+4. **Visual Test-Driven Development (TDD) Workflow:** You must strictly follow these 3 steps for every new feature (skip if the feature is only visual and doesn't need a test):
    - **Step 1:** Write the E2E test in the `e2e/tests/` folder.
    - **Step 2:** Run the test in the terminal and show me the failure log.
    - **Step 3:** ONLY AFTER the test fails, write the React/Tailwind code in `src/` to make it pass.
