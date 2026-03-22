@@ -8,7 +8,7 @@ import userIsInMobile from './utils/mobile';
 
 export default function App() {
   const { setIsMobile } = useAppStore();
-  const { Windows } = useWindowStore();
+  const { Windows, closeWindow } = useWindowStore();
 
   useEffect(() => {
     setIsMobile(userIsInMobile());
@@ -22,7 +22,7 @@ export default function App() {
       <Desktop />
       {
         Windows.terminal && (
-          <Window title="Terminal ~ JoaoVMarques@Portfolio">
+          <Window title="Terminal ~ JoaoVMarques@Portfolio" onClose={ () => closeWindow('terminal') }>
             <Terminal />
           </Window>
         )

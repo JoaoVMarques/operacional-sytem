@@ -3,12 +3,14 @@ import type { ElementType } from 'react';
 interface Props {
 icon: ElementType;
   label: string;
+  onClick: () => void;
 }
 
-function DesktopIcon({ icon: Icon, label }: Props) {
+function DesktopIcon({ icon: Icon, label, onClick }: Props) {
   return (
     <div
-      className="flex flex-col items-center justify-center p-2 w-24 select-none"
+      className="flex flex-col items-center justify-center p-2 w-24 select-none cursor-pointer group"
+      onClick={ onClick }
     >
       <div
         className="p-2
@@ -16,9 +18,7 @@ function DesktopIcon({ icon: Icon, label }: Props) {
         duration-300
         transform
         rounded-md
-        hover:scale-125
-        cursor-pointer
-        group"
+        hover:scale-125"
       >
         <Icon color="white"
           className="transition-all group duration-300 group-hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.8)]"

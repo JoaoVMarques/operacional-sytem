@@ -6,6 +6,7 @@ import { Rnd } from 'react-rnd';
 interface Props {
   children: React.ReactNode;
   title: string;
+  onClose: () => void;
 }
 
 const DEFAULT_POSITION = { x: 100, y: 100, width: 700, height: 500 };
@@ -25,7 +26,7 @@ const RESIZE_HANDLE_STYLES = Object.fromEntries(
   Object.entries(CURSOR_BY_DIRECTION).map(([dir, cursor]) => [dir, { cursor }]),
 );
 
-function Window({ children, title }: Props) {
+function Window({ children, title, onClose }: Props) {
   const handleResizeStart = useCallback((_: unknown, dir: string) => {
     document.body.style.setProperty('cursor', CURSOR_BY_DIRECTION[dir] ?? 'auto', 'important');
   }, []);
@@ -51,13 +52,16 @@ function Window({ children, title }: Props) {
           <div className="flex gap-2">
             <WindowButton icon={ <Minus size={ 10 } strokeWidth={ 7 } /> }
               colorClass="bg-yellow-500"
-              hoverColorClasss="hover:bg-yellow-700" />
+              hoverColorClasss="hover:bg-yellow-700"
+              onClick={ () => {} }/>
             <WindowButton icon={ <Plus size={ 10 } strokeWidth={ 7 } /> }
               colorClass="bg-green-500"
-              hoverColorClasss="hover:bg-green-700" />
+              hoverColorClasss="hover:bg-green-700"
+              onClick={ () => {} }/>
             <WindowButton icon={ <X size={ 10 } strokeWidth={ 7 } /> }
               colorClass="bg-red-500"
-              hoverColorClasss="hover:bg-red-700" />
+              hoverColorClasss="hover:bg-red-700"
+              onClick={ onClose }/>
           </div>
         </div>
         <div className="flex-1 w-full relative">
