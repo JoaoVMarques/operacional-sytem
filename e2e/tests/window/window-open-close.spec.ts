@@ -45,6 +45,9 @@ test.describe('Mobile Viewport', () => {
     await desktopIcon.click();
     await expect(terminalWindow).toBeVisible();
 
+    const maximizeButton = page.locator('button.bg-green-500').first();
+    await expect(maximizeButton).toBeHidden();
+
     const closeButton = page.locator('button.bg-red-500').first();
     await expect(closeButton).toBeInViewport();
     await closeButton.click();
