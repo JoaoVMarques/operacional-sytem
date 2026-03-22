@@ -7,7 +7,7 @@ interface props {
 
 function WindowButton({ icon, colorClass, hoverColorClasss, onClick }: props) {
   return (
-    <button className={ `w-4.5 h-4.5 ${colorClass} ${hoverColorClasss} text-transparent hover:text-white rounded-full flex items-center justify-center` }
+    <button className={ `w-4.5 h-4.5 ${colorClass} ${hoverColorClasss} text-white md:text-transparent hover:text-white rounded-full flex items-center justify-center` }
       onClick={ onClick }
     >
       { icon }

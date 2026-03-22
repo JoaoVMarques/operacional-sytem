@@ -42,7 +42,7 @@ function Window({ children, title, onClose }: Props) {
     <div className={ `bg-stone-700 p-0.5 flex flex-col shadow-2xl overflow-hidden ${isMobile ? 'absolute inset-0 w-full h-full z-50 rounded-none' : 'w-full h-full rounded-t-lg'}` }>
       <div className="window-drag-handle w-full h-7 shrink-0 py-4 flex items-center justify-between px-3 select-none">
         <h1 className="text-slate-50 mx-auto truncate">{ title }</h1>
-        <div className="flex gap-4 md:gap-2">
+        <div className="flex gap-3.5 md:gap-2">
           <WindowButton icon={ <Minus size={ 10 } strokeWidth={ 7 } /> }
             colorClass="bg-yellow-500"
             hoverColorClasss="hover:bg-yellow-700"
