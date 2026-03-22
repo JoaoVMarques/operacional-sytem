@@ -3,12 +3,15 @@ import Terminal from './apps/terminal';
 import Window from './components/window';
 import { useAppStore } from './store/useMobile';
 import Desktop from './components/desktop';
+import { useWindowStore } from './store/useWindow';
+import userIsInMobile from './utils/mobile';
 
 export default function App() {
-  const { isMobile, setIsMobile } = useAppStore();
+  const { setIsMobile } = useAppStore();
+  const { Windows } = useWindowStore();
 
   useEffect(() => {
-    setIsMobile(window.innerWidth < 768);
+    setIsMobile(userIsInMobile());
   }, []);
 
   return (
@@ -17,11 +20,13 @@ export default function App() {
         text-slate-50 selection:bg-cyan-500` }
     >
       <Desktop />
-      { !isMobile && (
-        <Window title="Terminal ~ JoaoVMarques@Portfolio">
-          <Terminal />
-        </Window>
-      ) }
+      {
+        Windows.terminal && (
+          <Window title="Terminal ~ JoaoVMarques@Portfolio">
+            <Terminal />
+          </Window>
+        )
+      }
     </div>
   );
 }
