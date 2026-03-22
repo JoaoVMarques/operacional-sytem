@@ -1,18 +1,19 @@
 import { SquareTerminal } from 'lucide-react';
 import { useLanguageStore } from '../../store/useLanguage';
+import type { ElementType } from 'react';
 
 interface Icons {
   id: string;
   label: string;
-  icon: React.ReactNode;
+  icon: ElementType;
 }
 
-const { t } = useLanguageStore();
+const { t } = useLanguageStore.getState();
 
-export const DESKTOP_ICONS: Icons[] = [
+export const DesktopApps: Icons[] = [
   {
     id: 'terminal',
     label: t('desktop.terminal'),
-    icon: <SquareTerminal />,
+    icon: SquareTerminal,
   },
 ];

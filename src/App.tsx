@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import Terminal from './apps/terminal';
 import Window from './components/window';
 import { useAppStore } from './store/useMobile';
+import Desktop from './components/desktop';
 
 export default function App() {
   const { isMobile, setIsMobile } = useAppStore();
@@ -15,6 +16,7 @@ export default function App() {
       className={ `fixed inset-0 overflow-hidden bg-gray-700 
         text-slate-50 selection:bg-cyan-500` }
     >
+      <Desktop />
       { !isMobile && (
         <Window title="Terminal ~ JoaoVMarques@Portfolio">
           <Terminal />

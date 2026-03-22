@@ -1,7 +1,14 @@
+import { DesktopApps } from '../../data/desktop/Icons';
+import DesktopIcon from './DesktopIcon';
+
 function Desktop() {
   return (
     <div>
-      <h1>Desktop</h1>
+      {
+        DesktopApps.map((app) => (
+          <DesktopIcon key={ app.id } icon={ app.icon } label={ app.label } />
+        ))
+      }
     </div>
   );
 }
