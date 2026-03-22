@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import Terminal from './apps/terminal';
 import Window from './components/window';
-import { useAppStore } from './store';
+import { useAppStore } from './store/useMobile';
 
 export default function App() {
   const { isMobile, setIsMobile } = useAppStore();
