@@ -18,7 +18,7 @@ function DesktopIcon({ icon: Icon, label, onClick }: Props) {
         duration-300
         transform
         rounded-md
-        hover:scale-125"
+        group-hover:scale-125"
       >
         <Icon color="white"
           className="transition-all group duration-300 group-hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.8)]"

@@ -104,6 +104,7 @@ function Window({ children, title, onClose }: Props) {
       minHeight={ 200 }
       bounds="parent"
       dragHandleClassName="window-drag-handle"
+      cancel="button"
       resizeHandleStyles={ RESIZE_HANDLE_STYLES }
       disableDragging={ isMaximized }
       enableResizing={ !isMaximized }
