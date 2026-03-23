@@ -15,9 +15,11 @@ src/
   main.tsx -- React entrypoint
   App.tsx -- React main component
   apps/ -- all apps/windows separate each folder
-  store/ -- global state management
   components/ -- generics components
   data/ -- project data
+  locales/ -- project languages/locales
+  store/ -- global state management
+  utils/ -- project utilities files
 ```
 
 ## Code and Behavior Guidelines (Mandatory)

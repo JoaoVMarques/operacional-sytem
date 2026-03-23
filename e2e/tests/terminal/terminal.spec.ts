@@ -9,20 +9,20 @@ test.describe('Terminal Window', () => {
     await expect(appContainer).toBeVisible();
 
     const terminalTitle = page.getByText('Terminal ~ JoaoVMarques@Portfolio');
-    const terminalContent = page.getByText('Content');
-
     await expect(terminalTitle).toBeHidden();
-    await expect(terminalContent).toBeHidden();
   });
 
-  test('Terminal is visible on desktop viewport', async ({ page }) => {
+  test('Terminal is visible on desktop viewport and animates welcome message', async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 720 });
     await page.goto('/');
 
     const terminalTitle = page.getByText('Terminal ~ JoaoVMarques@Portfolio');
-    const terminalContent = page.getByText('Content');
-
     await expect(terminalTitle).toBeVisible();
-    await expect(terminalContent).toBeVisible();
+
+    const welcomeMessage = page.getByText('Welcome to my Portfolio!');
+    await expect(welcomeMessage).toBeVisible({ timeout: 10000 });
+
+    const cursor = page.locator('text="_"');
+    await expect(cursor).toBeVisible();
   });
 });
