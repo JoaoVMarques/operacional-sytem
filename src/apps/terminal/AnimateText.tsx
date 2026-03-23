@@ -1,9 +1,10 @@
 import { motion } from 'framer-motion';
 
 const letterVariants = {
-  hidden: { opacity: 0 },
+  hidden: { opacity: 0, display: 'none' },
   visible: {
     opacity: 1,
+    display: 'inline',
     transition: { duration: 0 },
   },
 };

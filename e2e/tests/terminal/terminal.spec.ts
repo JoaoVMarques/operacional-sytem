@@ -25,4 +25,18 @@ test.describe('Terminal Window', () => {
     const cursor = page.locator('text="_"');
     await expect(cursor).toBeVisible();
   });
+
+  test('Terminal accepts user input after welcome message', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 720 });
+    await page.goto('/');
+
+    const terminalContainer = page.locator('.bg-slate-950').first();
+    await terminalContainer.click();
+
+    const inputField = page.locator('input');
+    await inputField.fill('helloworld', { timeout: 15000 });
+
+    const typedCommand = page.getByText('helloworld');
+    await expect(typedCommand).toBeVisible();
+  });
 });
