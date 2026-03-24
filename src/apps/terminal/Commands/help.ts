@@ -1,16 +1,34 @@
 import { commands } from '.';
 import { useLanguageStore } from '../../../store/useLanguage';
 
-const t = useLanguageStore.getState().t;
-
 const helpCommand = () => {
-  let fullMessage = t('terminal.commands.help_message');
+  const t = useLanguageStore.getState().t;
+  let fullMessage = `${t('terminal.commands.help_message')}\n`;
+  const groupedCommands: Record<string, string[]> = {};
 
   Object.keys(commands).forEach((key) => {
-    fullMessage += `${key.padEnd(10, ' ')} - ${t(`terminal.commands.${key}_description`)}\n`;
+    let category = t(`terminal.commands.${key}_category`);
+    if (category === `terminal.commands.${key}_category` || !category) {
+      category = 'Utilities';
+    }
+
+    const description = t(`terminal.commands.${key}_description`);
+
+    if (!groupedCommands[category]) {
+      groupedCommands[category] = [];
+    }
+
+    groupedCommands[category].push(`  ${key.padEnd(10, ' ')} - ${description}`);
   });
 
-  return fullMessage;
+  Object.keys(groupedCommands).forEach((category) => {
+    fullMessage += `{{text-purple-300|${category}}}:\n`;
+    groupedCommands[category].forEach((cmdLine) => {
+      fullMessage += `${cmdLine}\n`;
+    });
+  });
+
+  return fullMessage.trimEnd();
 };
 
 export default helpCommand;

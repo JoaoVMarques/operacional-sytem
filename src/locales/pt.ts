@@ -12,6 +12,7 @@ const pt: Dictionary = {
     commands: {
       help_message: '{{text-amber-400 font-bold|Comandos disponíveis:}}\n ',
       help_description: 'Ver lista de comandos disponíveis.',
+      help_category: 'Utilitários',
     },
   },
 };

@@ -5,6 +5,7 @@ import { useAppStore } from './store/useMobile';
 import Desktop from './components/desktop';
 import { useWindowStore } from './store/useWindow';
 import userIsInMobile from './utils/mobile';
+import './styles.css';
 
 export default function App() {
   const { setIsMobile } = useAppStore();

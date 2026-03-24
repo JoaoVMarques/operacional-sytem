@@ -12,6 +12,7 @@ test.describe('Terminal Command Execution', () => {
 
     await expect(page.locator('text=$> help')).toBeVisible();
 
+    await expect(page.locator('text=Utilities:')).toBeVisible();
     await expect(page.locator('text=help').nth(1)).toBeVisible();
   });
 

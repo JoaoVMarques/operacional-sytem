@@ -5,7 +5,7 @@ import { useLanguageStore } from '../../store/useLanguage';
 import renderAnimatedText from './AnimateText';
 import { commands } from './Commands';
 
-// text-blue-300 text-purple-500 text-green-400 text-red-400 text-amber-400
+// text-blue-300 text-purple-500 text-green-400 text-red-400 text-amber-400 text-purple-300
 function Terminal() {
   const t = useLanguageStore((state) => state.t);
   const welcomeMessage = t('terminal.welcome_message');
