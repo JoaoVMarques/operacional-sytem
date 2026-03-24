@@ -86,7 +86,7 @@ function Window({ children, title, onClose }: Props) {
             onClick={ onClose }/>
         </div>
       </div>
-      <div className="flex-1 w-full relative">
+      <div className="flex-1 w-full relative min-h-0">
         { children }
       </div>
     </div>

@@ -14,9 +14,11 @@ function Terminal() {
   const fullMessage = `${welcomeMessage}\n${welcomeDescription}\n \n${helpMessage}\n`;
 
   const [isTypingFinished, setIsTypingFinished] = useState(false);
+  const [isCommandExecuting, setIsCommandExecuting] = useState(false);
   const [command, setCommand] = useState('');
   const [history, setHistory] = useState<{ type: 'input' | 'output', text: string }[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
+  const bottomRef = useRef<HTMLDivElement>(null);
 
   const handleCommandSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -34,11 +36,16 @@ function Terminal() {
       const output = cmdFunc();
       newHistory.push({ type: 'output' as const, text: output });
     } else {
-      newHistory.push({ type: 'output' as const, text: `${t('terminal.command_not_found')}{{text-red-400|${cmdName}}}` });
+      newHistory.push({ type: 'output' as const, text: `${t('terminal.command_not_found')} {{text-red-400|${cmdName}}}` });
     }
 
     setHistory(newHistory);
     setCommand('');
+    setIsCommandExecuting(true);
+
+    setTimeout(() => {
+      bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
   };
 
   const containerVariants = {
@@ -53,14 +60,19 @@ function Terminal() {
 
   return (
     <div
-      className="w-full h-full bg-slate-950 p-4 overflow-hidden font-mono text-white text-sm relative"
+      className="w-full h-full bg-slate-950 p-4 overflow-y-auto overflow-x-hidden font-mono text-white text-sm relative"
       onClick={ () => isTypingFinished && inputRef.current?.focus() }
     >
       <motion.div
         variants={ containerVariants }
         initial="hidden"
         animate="visible"
-        onAnimationComplete={ () => setIsTypingFinished(true) }
+        onAnimationComplete={ () => {
+          setIsTypingFinished(true);
+          setTimeout(() => {
+            bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+          }, 100);
+        } }
         className="inline-block"
       >
         { renderAnimatedText(fullMessage) }
@@ -79,6 +91,13 @@ function Terminal() {
                     variants={ containerVariants }
                     initial="hidden"
                     animate="visible"
+                    onAnimationComplete={ () => {
+                      bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+                      if (i === history.length - 1) {
+                        setIsCommandExecuting(false);
+                        setTimeout(() => inputRef.current?.focus(), 10);
+                      }
+                    } }
                   >
                     { renderAnimatedText(h.text) }
                   </motion.div>
@@ -86,28 +105,34 @@ function Terminal() {
               </div>
             )) }
 
-            <div className="whitespace-pre flex items-center mt-4">
-              <span className="text-green-400 font-bold mr-2">$&gt;</span>
-              <span>{ command }</span>
-              <motion.span
-                animate={ { opacity: [1, 1, 0, 0] } }
-                transition={ {
-                  duration: 1,
-                  repeat: Infinity,
-                  ease: 'linear',
-                  times: [0, 0.5, 0.5, 1],
-                } }
-                className="ml-px inline-block font-bold"
-              >
-                _
-              </motion.span>
-            </div>
+            { !isCommandExecuting && (
+              <div className="whitespace-pre flex items-center mt-4 mb-8">
+                <span className="text-green-400 font-bold mr-2">$&gt;</span>
+                <span>{ command }</span>
+                <motion.span
+                  animate={ { opacity: [1, 1, 0, 0] } }
+                  transition={ {
+                    duration: 1,
+                    repeat: Infinity,
+                    ease: 'linear',
+                    times: [0, 0.5, 0.5, 1],
+                  } }
+                  className="ml-px inline-block font-bold"
+                >
+                  _
+                </motion.span>
+              </div>
+            ) }
           </div>
         ) }
       </motion.div>
 
-      { isTypingFinished && (
-        <form onSubmit={ handleCommandSubmit } className="opacity-0 absolute inset-0 pointer-events-none">
+      { isTypingFinished && !isCommandExecuting && (
+        <form
+          onSubmit={ handleCommandSubmit }
+          className={ `opacity-0 h-0 w-0 overflow-hidden pointer-events-none
+            shrink-0` }
+        >
           <input
             ref={ inputRef }
             type="text"
@@ -117,6 +142,7 @@ function Terminal() {
           />
         </form>
       ) }
+      <div ref={ bottomRef } />
     </div>
   );
 }

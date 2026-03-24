@@ -10,6 +10,10 @@ test.describe('Terminal Command Execution', () => {
     await inputLocator.fill('help');
     await inputLocator.press('Enter');
 
+    await expect(page.locator('input[type="text"]')).toBeHidden();
+
+    await expect(page.locator('input[type="text"]')).toBeAttached({ timeout: 10000 });
+    
     await expect(page.locator('text=$> help')).toBeVisible();
 
     await expect(page.locator('text=Utilities:')).toBeVisible();
@@ -27,5 +31,23 @@ test.describe('Terminal Command Execution', () => {
 
     await expect(page.locator('text=$> notacommand')).toBeVisible();
     await expect(page.locator('text=Command not found: notacommand')).toBeVisible();
+  });
+
+  test('should allow vertical scrolling when output exceeds terminal height', async ({ page }) => {
+    await page.goto('/');
+
+    const inputLocator = page.locator('input[type="text"]');
+    await inputLocator.waitFor({ state: 'attached', timeout: 10000 });
+
+    for (let i = 0; i < 5; i++) {
+        await inputLocator.fill('help');
+        await inputLocator.press('Enter');
+    }
+
+    const terminalContainer = page.locator('.bg-slate-950');
+    await expect(terminalContainer).toHaveCSS('overflow-y', 'auto');
+    
+    const dragHandle = page.locator('.window-drag-handle');
+    await expect(dragHandle).toBeVisible();
   });
 });
