@@ -69,4 +69,18 @@ test.describe('Terminal Command Execution', () => {
     await expect(page.locator('text=$> help')).toBeHidden();
     await expect(page.locator('text=Utilities:')).toBeHidden();
   });
+
+  test('should display contact information', async ({ page }) => {
+    await page.goto('/');
+
+    const inputLocator = page.locator('input[type="text"]');
+    await inputLocator.waitFor({ state: 'attached', timeout: 10000 });
+
+    await inputLocator.fill('contact');
+    await inputLocator.press('Enter');
+
+    await expect(page.locator('text=$> contact')).toBeVisible();
+    await expect(page.locator('text=Available contacts:')).toBeVisible();
+    await expect(page.locator('text=GitHub:')).toBeVisible();
+  });
 });
