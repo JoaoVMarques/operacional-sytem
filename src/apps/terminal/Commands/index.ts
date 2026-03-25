@@ -1,7 +1,8 @@
 import helpCommand from './help';
-import { clearCommand } from './simple';
+import { clearCommand, contactMessage } from './simple';
 
 export const commands = {
+  contact: contactMessage,
   help: helpCommand,
   clear: clearCommand,
 };

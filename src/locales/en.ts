@@ -14,6 +14,10 @@ const en = {
 
       clear_description: 'Clear the terminal.',
       clear_category: 'Utilities',
+
+      contact_title: '{{text-amber-400 font-bold|Available contacts:}} \n \n',
+      contact_description: 'See list of available contacts.',
+      contact_category: 'About me',
     },
 
   },

@@ -16,6 +16,10 @@ const pt: Dictionary = {
 
       clear_description: 'Limpar o terminal.',
       clear_category: 'Utilitários',
+
+      contact_title: '{{text-amber-400 font-bold|Contatos disponíveis:}}\n ',
+      contact_description: 'Ver lista de contatos disponíveis.',
+      contact_category: 'Sobre mim',
     },
   },
 };

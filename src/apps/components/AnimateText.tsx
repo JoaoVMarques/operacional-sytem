@@ -22,7 +22,11 @@ const renderAnimatedText = (text: string) => {
           return <div key={ `char-${globalCharIndex++}` } className="w-full h-1" />;
         }
         return (
-          <motion.span key={ `char-${globalCharIndex++}` } variants={ letterVariants } className="whitespace-pre">
+          <motion.span
+            key={ `char-${globalCharIndex++}` }
+            variants={ letterVariants }
+            className="whitespace-pre"
+          >
             { char }
           </motion.span>
         );
@@ -45,7 +49,11 @@ const renderAnimatedText = (text: string) => {
           className={ customClassName }
         >
           { linkText.split('').map((char) => (
-            <motion.span key={ `char-${globalCharIndex++}` } variants={ letterVariants } className="whitespace-pre">
+            <motion.span
+              key={ `char-${globalCharIndex++}` }
+              variants={ letterVariants }
+              className="whitespace-pre"
+            >
               { char }
             </motion.span>
           )) }

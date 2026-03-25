@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import type { FormEvent } from 'react';
 import { useLanguageStore } from '../../store/useLanguage';
 import { commands } from './Commands';
@@ -20,7 +20,23 @@ function Terminal() {
     { type: 'output', text: fullMessage },
   ]);
   const inputRef = useRef<HTMLInputElement>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const innerContainerRef = useRef<HTMLDivElement>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!innerContainerRef.current || !scrollContainerRef.current) {return;}
+
+    const ro = new ResizeObserver(() => {
+      if (scrollContainerRef.current) {
+        scrollContainerRef.current.scrollTop = scrollContainerRef.current.scrollHeight;
+      }
+    });
+
+    ro.observe(innerContainerRef.current);
+
+    return () => ro.disconnect();
+  }, []);
 
   const handleCommandSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -59,10 +75,11 @@ function Terminal() {
 
   return (
     <div
+      ref={ scrollContainerRef }
       className="w-full h-full bg-slate-950 p-4 overflow-y-auto overflow-x-hidden font-mono text-white text-sm relative"
       onClick={ () => !isCommandExecuting && inputRef.current?.focus() }
     >
-      <div className="flex flex-col w-full">
+      <div ref={ innerContainerRef } className="flex flex-col w-full">
         { history.map((h, i) => (
           <TerminalHistoryItem
             key={ i }
