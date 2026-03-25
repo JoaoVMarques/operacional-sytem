@@ -13,6 +13,9 @@ const pt: Dictionary = {
       help_message: '{{text-amber-400 font-bold|Comandos disponíveis:}}\n ',
       help_description: 'Ver lista de comandos disponíveis.',
       help_category: 'Utilitários',
+
+      clear_description: 'Limpar o terminal.',
+      clear_category: 'Utilitários',
     },
   },
 };

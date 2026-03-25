@@ -50,4 +50,23 @@ test.describe('Terminal Command Execution', () => {
     const dragHandle = page.locator('.window-drag-handle');
     await expect(dragHandle).toBeVisible();
   });
+
+  test('should clear the terminal on clear command', async ({ page }) => {
+    await page.goto('/');
+
+    const inputLocator = page.locator('input[type="text"]');
+    await inputLocator.waitFor({ state: 'attached', timeout: 10000 });
+
+    await inputLocator.fill('help');
+    await inputLocator.press('Enter');
+
+    await expect(page.locator('text=$> help')).toBeVisible();
+    await expect(page.locator('text=Utilities:')).toBeVisible();
+
+    await inputLocator.fill('clear');
+    await inputLocator.press('Enter');
+
+    await expect(page.locator('text=$> help')).toBeHidden();
+    await expect(page.locator('text=Utilities:')).toBeHidden();
+  });
 });

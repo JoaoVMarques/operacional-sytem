@@ -13,10 +13,11 @@ function Terminal() {
   const helpMessage = t('terminal.help_message');
   const fullMessage = `${welcomeMessage}\n${welcomeDescription}\n \n${helpMessage}\n`;
 
-  const [isTypingFinished, setIsTypingFinished] = useState(false);
-  const [isCommandExecuting, setIsCommandExecuting] = useState(false);
+  const [isCommandExecuting, setIsCommandExecuting] = useState(true);
   const [command, setCommand] = useState('');
-  const [history, setHistory] = useState<{ type: 'input' | 'output', text: string }[]>([]);
+  const [history, setHistory] = useState<{ type: 'input' | 'output', text: string }[]>([
+    { type: 'output', text: fullMessage },
+  ]);
   const inputRef = useRef<HTMLInputElement>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
 
@@ -34,6 +35,13 @@ function Terminal() {
     if (cmdName in commands) {
       const cmdFunc = commands[cmdName as keyof typeof commands];
       const output = cmdFunc();
+
+      if (output === 'CLEAR_TERMINAL') {
+        setHistory([{ type: 'output', text: helpMessage }]);
+        setCommand('');
+        return;
+      }
+
       newHistory.push({ type: 'output' as const, text: output });
     } else {
       newHistory.push({ type: 'output' as const, text: `${t('terminal.command_not_found')} {{text-red-400|${cmdName}}}` });
@@ -61,73 +69,56 @@ function Terminal() {
   return (
     <div
       className="w-full h-full bg-slate-950 p-4 overflow-y-auto overflow-x-hidden font-mono text-white text-sm relative"
-      onClick={ () => isTypingFinished && inputRef.current?.focus() }
+      onClick={ () => !isCommandExecuting && inputRef.current?.focus() }
     >
-      <motion.div
-        variants={ containerVariants }
-        initial="hidden"
-        animate="visible"
-        onAnimationComplete={ () => {
-          setIsTypingFinished(true);
-          setTimeout(() => {
-            bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
-          }, 100);
-        } }
-        className="inline-block"
-      >
-        { renderAnimatedText(fullMessage) }
-
-        { isTypingFinished && (
-          <div className="flex flex-col w-full">
-            { history.map((h, i) => (
-              <div key={ i } className="whitespace-pre">
-                { h.type === 'input' ? (
-                  <div className="mt-4">
-                    <span className="text-green-400 font-bold">$&gt; </span>
-                    <span>{ h.text }</span>
-                  </div>
-                ) : (
-                  <motion.div
-                    variants={ containerVariants }
-                    initial="hidden"
-                    animate="visible"
-                    onAnimationComplete={ () => {
-                      bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
-                      if (i === history.length - 1) {
-                        setIsCommandExecuting(false);
-                        setTimeout(() => inputRef.current?.focus(), 10);
-                      }
-                    } }
-                  >
-                    { renderAnimatedText(h.text) }
-                  </motion.div>
-                ) }
+      <div className="flex flex-col w-full">
+        { history.map((h, i) => (
+          <div key={ i } className="whitespace-pre">
+            { h.type === 'input' ? (
+              <div className="mt-4">
+                <span className="text-green-400 font-bold">$&gt; </span>
+                <span>{ h.text }</span>
               </div>
-            )) }
-
-            { !isCommandExecuting && (
-              <div className="whitespace-pre flex items-center mt-4 mb-8">
-                <span className="text-green-400 font-bold mr-2">$&gt;</span>
-                <span>{ command }</span>
-                <motion.span
-                  animate={ { opacity: [1, 1, 0, 0] } }
-                  transition={ {
-                    duration: 1,
-                    repeat: Infinity,
-                    ease: 'linear',
-                    times: [0, 0.5, 0.5, 1],
-                  } }
-                  className="ml-px inline-block font-bold"
-                >
-                  _
-                </motion.span>
-              </div>
+            ) : (
+              <motion.div
+                variants={ containerVariants }
+                initial="hidden"
+                animate="visible"
+                onAnimationComplete={ () => {
+                  bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+                  if (i === history.length - 1) {
+                    setIsCommandExecuting(false);
+                    setTimeout(() => inputRef.current?.focus(), 10);
+                  }
+                } }
+              >
+                { renderAnimatedText(h.text) }
+              </motion.div>
             ) }
           </div>
-        ) }
-      </motion.div>
+        )) }
 
-      { isTypingFinished && !isCommandExecuting && (
+        { !isCommandExecuting && (
+          <div className="whitespace-pre flex items-center mt-4 mb-8">
+            <span className="text-green-400 font-bold mr-2">$&gt;</span>
+            <span>{ command }</span>
+            <motion.span
+              animate={ { opacity: [1, 1, 0, 0] } }
+              transition={ {
+                duration: 1,
+                repeat: Infinity,
+                ease: 'linear',
+                times: [0, 0.5, 0.5, 1],
+              } }
+              className="ml-px inline-block font-bold"
+            >
+              _
+            </motion.span>
+          </div>
+        ) }
+      </div>
+
+      { !isCommandExecuting && (
         <form
           onSubmit={ handleCommandSubmit }
           className={ `opacity-0 h-0 w-0 overflow-hidden pointer-events-none

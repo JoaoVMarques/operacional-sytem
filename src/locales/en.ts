@@ -11,6 +11,9 @@ const en = {
       help_message: '{{text-amber-400 font-bold|Available commands:}}\n ',
       help_description: 'See list of available commands.',
       help_category: 'Utilities',
+
+      clear_description: 'Clear the terminal.',
+      clear_category: 'Utilities',
     },
 
   },
