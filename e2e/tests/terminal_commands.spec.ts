@@ -83,4 +83,22 @@ test.describe('Terminal Command Execution', () => {
     await expect(page.locator('text=Available contacts:')).toBeVisible();
     await expect(page.locator('text=GitHub:')).toBeVisible();
   });
+  test('aboutme command should not overflow the terminal horizontally', async ({ page }) => {
+    await page.goto('/');
+
+    const inputLocator = page.locator('input[type="text"]');
+    await inputLocator.waitFor({ state: 'attached', timeout: 10000 });
+
+    await inputLocator.fill('aboutme');
+    await inputLocator.press('Enter');
+
+    await expect(page.locator('text=$> aboutme')).toBeVisible();
+
+    const terminalContainer = page.locator('.bg-slate-950');
+    
+    await page.waitForTimeout(1000);
+
+    const isOverflowing = await terminalContainer.evaluate((el) => el.scrollWidth > el.clientWidth);
+    expect(isOverflowing).toBe(false);
+  });
 });

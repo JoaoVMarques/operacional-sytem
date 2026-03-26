@@ -20,6 +20,11 @@ const pt: Dictionary = {
       contact_title: '{{text-amber-400 font-bold|Contatos disponíveis:}}\n ',
       contact_description: 'Ver lista de contatos disponíveis.',
       contact_category: 'Sobre mim',
+
+      aboutme_message: ` Desenvolvedor full-stack com uma sólida experiência de anos em projetos diversos, utilizando TypeScript, Python e outras tecnologias.
+Busco ativamente novas oportunidades profissionais, com objetivo de impactar milhões de pessoas por meio da programação, colaborando com equipes inovadoras e compartilhando meu conhecimento com outros profissionais.`,
+      aboutme_description: 'Ver mais informações sobre mim.',
+      aboutme_category: 'Sobre mim',
     },
   },
 };

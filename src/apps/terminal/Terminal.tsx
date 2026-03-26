@@ -76,7 +76,8 @@ function Terminal() {
   return (
     <div
       ref={ scrollContainerRef }
-      className="w-full h-full bg-slate-950 p-4 overflow-y-auto overflow-x-hidden font-mono text-white text-sm relative"
+      className={ `w-full h-full bg-slate-950 p-4 pb-32 overflow-y-auto 
+        overflow-x-hidden font-mono text-white text-sm relative` }
       onClick={ () => !isCommandExecuting && inputRef.current?.focus() }
     >
       <div ref={ innerContainerRef } className="flex flex-col w-full">

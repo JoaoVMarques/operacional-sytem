@@ -3,9 +3,9 @@ import { useLanguageStore } from '../../../store/useLanguage';
 
 const { t } = useLanguageStore.getState();
 
-export const clearCommand = () => {
-  return 'CLEAR_TERMINAL';
-};
+export const clearCommand = () => 'CLEAR_TERMINAL';
+
+export const aboutMe = () => t('terminal.commands.aboutme_message');
 
 export const contactMessage = () => {
   let fullMessage = t('terminal.commands.contact_title');

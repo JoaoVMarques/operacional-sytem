@@ -19,13 +19,12 @@ const renderAnimatedText = (text: string) => {
     if (index % 2 === 0) {
       return part.split('').map((char) => {
         if (char === '\n') {
-          return <div key={ `char-${globalCharIndex++}` } className="w-full h-1" />;
+          return <div key={ `char-${globalCharIndex++}` } className="w-full mb-1.5 h-1" />;
         }
         return (
           <motion.span
             key={ `char-${globalCharIndex++}` }
             variants={ letterVariants }
-            className="whitespace-pre"
           >
             { char }
           </motion.span>
@@ -52,7 +51,6 @@ const renderAnimatedText = (text: string) => {
             <motion.span
               key={ `char-${globalCharIndex++}` }
               variants={ letterVariants }
-              className="whitespace-pre"
             >
               { char }
             </motion.span>
@@ -70,7 +68,7 @@ const renderAnimatedText = (text: string) => {
         <motion.span
           key={ `char-${globalCharIndex++}` }
           variants={ letterVariants }
-          className={ `${customClassName} whitespace-pre` }
+          className={ customClassName }
         >
           { char }
         </motion.span>

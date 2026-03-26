@@ -18,7 +18,7 @@ const containerVariants = {
 
 function TerminalHistoryItem({ item, onAnimationComplete }: Props) {
   return (
-    <div className="whitespace-pre">
+    <div className="whitespace-pre-wrap wrap-break-word">
       { item.type === 'input' ? (
         <div className="mt-4 mb-3">
           <span className="text-green-400 font-bold">$&gt; </span>
