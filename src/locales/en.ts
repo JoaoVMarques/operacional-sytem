@@ -1,6 +1,18 @@
 const en = {
   desktop: {
     terminal: 'Terminal',
+    projects: 'Projects',
+  },
+  projects_app: {
+    subtitle: 'Explore my projects and code repositories.',
+    portfolio: {
+      title: 'Portfolio OS',
+      description: 'A browser-based desktop OS built with React, TypeScript, and Tailwind CSS.',
+    },
+    placeholder: {
+      title: 'Placeholder Project',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    },
   },
   terminal: {
     welcome_message: 'Welcome to my {{text-blue-300|Portfolio}}!',

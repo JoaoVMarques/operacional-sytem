@@ -1,4 +1,4 @@
-import { SquareTerminal } from 'lucide-react';
+import { Folder, SquareTerminal } from 'lucide-react';
 import { useLanguageStore } from '../../store/useLanguage';
 import type { ElementType } from 'react';
 
@@ -15,5 +15,10 @@ export const DesktopApps: Icons[] = [
     id: 'terminal',
     label: t('desktop.terminal'),
     icon: SquareTerminal,
+  },
+  {
+    id: 'projects',
+    label: t('desktop.projects'),
+    icon: Folder,
   },
 ];

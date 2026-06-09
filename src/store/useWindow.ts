@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import userIsInMobile from '../utils/mobile';
 
-export type AppId = 'terminal'
+export type AppId = 'terminal' | 'projects'
 
 interface WindowState {
   Windows: Record<AppId, boolean>
@@ -12,6 +12,7 @@ interface WindowState {
 export const useWindowStore = create<WindowState>((set) => ({
   Windows: {
     terminal: userIsInMobile() ? false : true,
+    projects: false,
   },
 
   openWindow: (id) => set((state) => ({

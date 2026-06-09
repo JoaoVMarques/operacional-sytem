@@ -3,6 +3,19 @@ import type { Dictionary } from '.';
 const pt: Dictionary = {
   desktop: {
     terminal: 'Terminal',
+    projects: 'Projetos',
+  },
+  projects_app: {
+    subtitle: 'Explore meus projetos e repositórios de código.',
+    portfolio: {
+      title: 'Portfolio OS',
+      description:
+        'Um sistema operacional de desktop baseado em navegador, feito com React, TypeScript e Tailwind CSS.',
+    },
+    placeholder: {
+      title: 'Placeholder Project',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    },
   },
   terminal: {
     welcome_message: 'Bem-vindo ao meu {{text-blue-300|Portfolio}}!',
