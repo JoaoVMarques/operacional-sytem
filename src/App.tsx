@@ -12,7 +12,7 @@ import './styles.css';
 export default function App() {
   const { t } = useLanguageStore();
   const { setIsMobile } = useAppStore();
-  const { Windows, closeWindow } = useWindowStore();
+  const { Windows, closeWindow, focusedWindow, focusWindow } = useWindowStore();
 
   useEffect(() => {
     setIsMobile(userIsInMobile());
@@ -26,14 +26,24 @@ export default function App() {
       <Desktop />
       {
         Windows.terminal && (
-          <Window title="Terminal ~ JoaoVMarques@Portfolio" onClose={ () => closeWindow('terminal') }>
+          <Window
+            title="Terminal ~ JoaoVMarques@Portfolio"
+            onClose={ () => closeWindow('terminal') }
+            zIndex={ focusedWindow === 'terminal' ? 10 : 1 }
+            onFocus={ () => focusWindow('terminal') }
+          >
             <Terminal />
           </Window>
         )
       }
       {
         Windows.projects && (
-          <Window title={ t('desktop.projects') } onClose={ () => closeWindow('projects') }>
+          <Window
+            title={ t('desktop.projects') }
+            onClose={ () => closeWindow('projects') }
+            zIndex={ focusedWindow === 'projects' ? 10 : 1 }
+            onFocus={ () => focusWindow('projects') }
+          >
             <Projects />
           </Window>
         )

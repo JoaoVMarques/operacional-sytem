@@ -8,6 +8,8 @@ interface Props {
   children: React.ReactNode;
   title: string;
   onClose: () => void;
+  zIndex: number;
+  onFocus: () => void;
 }
 
 const DEFAULT_POSITION = { x: 100, y: 100, width: 700, height: 500 };
@@ -27,7 +29,7 @@ const RESIZE_HANDLE_STYLES = Object.fromEntries(
   Object.entries(CURSOR_BY_DIRECTION).map(([dir, cursor]) => [dir, { cursor }]),
 );
 
-function Window({ children, title, onClose }: Props) {
+function Window({ children, title, onClose, zIndex, onFocus }: Props) {
   const { isMobile } = useAppStore();
 
   const [position, setPosition] = useState({ x: DEFAULT_POSITION.x, y: DEFAULT_POSITION.y });
@@ -66,7 +68,10 @@ function Window({ children, title, onClose }: Props) {
   }, []);
 
   const windowContent = (
-    <div className={ `bg-stone-700 ${ isMaximized ? 'p-0' : 'p-0.5' } flex flex-col shadow-2xl overflow-hidden ${isMobile ? 'absolute inset-0 w-full h-full z-50 rounded-none' : 'w-full h-full rounded-t-lg'}` }>
+    <div
+      className={ `bg-stone-700 ${ isMaximized ? 'p-0' : 'p-0.5' } flex flex-col shadow-2xl overflow-hidden ${isMobile ? 'absolute inset-0 w-full h-full z-50 rounded-none' : 'w-full h-full rounded-t-lg'}` }
+      onMouseDown={ onFocus }
+    >
       <div className="window-drag-handle w-full h-7 shrink-0 py-4 flex items-center justify-between px-3 select-none">
         <h1 className="text-slate-50 mx-auto truncate">{ title }</h1>
         <div className="flex gap-4 md:gap-2">
@@ -111,6 +116,7 @@ function Window({ children, title, onClose }: Props) {
       onDragStop={ handleDragStop }
       onResizeStart={ handleResizeStart }
       onResizeStop={ handleResizeStop }
+      style={ { zIndex } }
     >
       { windowContent }
     </Rnd>
